@@ -1419,12 +1419,50 @@ img{
         font-size:9px;
     }
 }
+/* =========================================================
+   RESTORAN DURUMU
+========================================================= */
 
+.restaurant-status-banner{
+    width:100%;
+    padding:11px 15px;
+
+    text-align:center;
+
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.4px;
+
+    position:relative;
+    z-index:100;
+}
+
+.restaurant-status-banner.checking{
+    background:#f3f4f6;
+    color:#525252;
+}
+
+.restaurant-status-banner.open{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.restaurant-status-banner.closed{
+    background:#fee2e2;
+    color:#991b1b;
+}
 </style>
 </head>
 
 <body>
+<!-- RESTORAN DURUM ŞERİDİ -->
 
+<div
+    id="restaurantStatusBanner"
+    class="restaurant-status-banner checking"
+>
+    RESTORAN DURUMU KONTROL EDİLİYOR...
+</div>
 
 <header class="header">
 
@@ -1830,8 +1868,93 @@ const supabaseClient =
 
 const RESTAURANT_SLUG =
     "antochya";
+let restaurantAcceptingOrders =
+    null;
+/* =========================================================
+   RESTORAN DURUMU
+========================================================= */
+
+async function loadRestaurantStatus(){
+
+    const banner =
+        document.getElementById(
+            "restaurantStatusBanner"
+        );
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.rpc(
+            "xd_restaurant_status",
+            {
+                p_restaurant_slug:
+                    RESTAURANT_SLUG
+            }
+        );
 
 
+        if(error){
+            throw error;
+        }
+
+
+        restaurantAcceptingOrders =
+            data?.accepting_orders === true;
+
+
+        if(
+            restaurantAcceptingOrders
+        ){
+
+            banner.className =
+                "restaurant-status-banner open";
+
+            banner.textContent =
+                "● SİPARİŞE AÇIK";
+
+        }
+
+        else{
+
+            banner.className =
+                "restaurant-status-banner closed";
+
+            banner.textContent =
+                "● SERVİSİMİZ ŞU ANDA KAPALI";
+
+        }
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Restoran durumu alınamadı:",
+            error
+        );
+
+
+        /*
+        Durum sorgulanamıyorsa güvenlik gereği
+        sipariş vermeye izin vermiyoruz.
+        */
+
+        restaurantAcceptingOrders =
+            false;
+
+
+        banner.className =
+            "restaurant-status-banner closed";
+
+        banner.textContent =
+            "● SİPARİŞ DURUMU ŞU ANDA KONTROL EDİLEMİYOR";
+
+    }
+
+}
 /* =========================================================
    ÜRÜNLER
 ========================================================= */
@@ -3430,7 +3553,67 @@ function openCheckout(){
 ========================================================= */
 
 async function placeOrder(){
+    /* =====================================================
+       RESTORAN AÇIK / KAPALI KONTROLÜ
+    ===================================================== */
 
+    await loadRestaurantStatus();
+
+
+    if(
+        restaurantAcceptingOrders !== true
+    ){
+
+        showSheet(`
+
+            <div class="success">
+
+                <div
+                    style="
+                        font-size:52px;
+                        margin-bottom:15px;
+                    "
+                >
+                    🕒
+                </div>
+
+                <h2>
+                    SERVİSİMİZ ŞU ANDA KAPALI
+                </h2>
+
+                <p>
+                    Restoranımız şu anda
+                    paket servis hizmeti vermemektedir.
+                    <br><br>
+                    Çalışma saatlerimiz içerisinde
+                    tekrar sipariş verebilirsiniz.
+                </p>
+
+                <button
+                    class="primary"
+                    id="closedBackButton"
+                >
+                    MENÜYE DÖN
+                </button>
+
+            </div>
+
+        `);
+
+
+        document
+        .getElementById(
+            "closedBackButton"
+        )
+        .addEventListener(
+            "click",
+            closeSheet
+        );
+
+
+        return;
+
+    }
     const button =
         document.getElementById(
             "placeOrderButton"
@@ -4109,10 +4292,9 @@ document
 ========================================================= */
 
 renderCategories();
-
 renderProducts();
-
 updateCartBar();
+loadRestaurantStatus();
 
 </script>
 
