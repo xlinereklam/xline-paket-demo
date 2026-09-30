@@ -1809,7 +1809,23 @@ SEPETİ GÖR →
 ========================================================= */
 
 const DISCOUNT_RATE = 0.20;
+/* =========================================================
+   SUPABASE
+========================================================= */
 
+const SUPABASE_URL =
+    "https://ikfdpoyipkrrdnqexdmc.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_aiNrChev_bQJFaqGw4-NbQ_uw0VcdMh";
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+const RESTAURANT_SLUG = "antochya";
 
 /* =========================================================
    ÜRÜNLER
@@ -3408,7 +3424,13 @@ function openCheckout(){
    SİPARİŞ
 ========================================================= */
 
-function placeOrder(){
+async function placeOrder(){
+
+    const button =
+        document.getElementById(
+            "placeOrderButton"
+        );
+
 
     const name =
         document
@@ -3455,6 +3477,10 @@ function placeOrder(){
         .trim();
 
 
+    /* =====================================================
+       ZORUNLU ALAN KONTROLÜ
+    ===================================================== */
+
     if(
         !name
         ||
@@ -3471,6 +3497,58 @@ function placeOrder(){
 
     }
 
+
+    /* =====================================================
+       SEPET KONTROLÜ
+    ===================================================== */
+
+    const items =
+        getCartItems();
+
+
+    if(
+        items.length === 0
+    ){
+
+        alert(
+            "Sepetiniz boş."
+        );
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       ÖDEME YÖNTEMİ
+    ===================================================== */
+
+    const paymentElement =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        );
+
+
+    if(
+        !paymentElement
+    ){
+
+        alert(
+            "Lütfen ödeme yöntemini seçin."
+        );
+
+        return;
+
+    }
+
+
+    const paymentMethod =
+        paymentElement.value;
+
+
+    /* =====================================================
+       MÜŞTERİ BİLGİLERİNİ HATIRLA
+    ===================================================== */
 
     const customer = {
 
@@ -3516,77 +3594,265 @@ function placeOrder(){
     }
 
 
-    const orderNumber =
-        Math.floor(
-            1000
-            +
-            Math.random()
-            *
-            9000
+    /* =====================================================
+       SUPABASE'E GÖNDERİLECEK ÜRÜNLER
+    ===================================================== */
+
+    const orderItems =
+        items.map(
+            function(item){
+
+                return {
+
+                    product_id:
+                        item.id,
+
+                    product_name:
+                        item.name,
+
+                    quantity:
+                        item.quantity,
+
+                    unit_price:
+                        item.price
+
+                };
+
+            }
         );
 
 
-    cart = {};
+    /* =====================================================
+       BUTONU KİLİTLE
+       ÇİFT SİPARİŞ GÖNDERİLMESİN
+    ===================================================== */
+
+    if(
+        button
+    ){
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "SİPARİŞ GÖNDERİLİYOR...";
+
+        button.style.opacity =
+            ".65";
+
+    }
 
 
-    localStorage.setItem(
-        "antochya_cart",
-        "{}"
-    );
+    try{
 
 
-    renderProducts();
+        /* =================================================
+           GERÇEK SİPARİŞİ SUPABASE'E GÖNDER
+        ================================================= */
 
-    updateCartBar();
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.rpc(
+
+            "xd_create_order",
+
+            {
+
+                p_restaurant_slug:
+                    RESTAURANT_SLUG,
+
+                p_customer_name:
+                    name,
+
+                p_customer_phone:
+                    phone,
+
+                p_customer_district:
+                    district,
+
+                p_customer_address:
+                    address,
+
+                p_customer_note:
+                    note,
+
+                p_payment_method:
+                    paymentMethod,
+
+                p_items:
+                    orderItems
+
+            }
+
+        );
 
 
-    showSheet(`
+        /* =================================================
+           SUPABASE HATASI VARSA
+        ================================================= */
 
-        <div class="success">
+        if(
+            error
+        ){
 
-            <div class="success-icon">
-                ✓
+            console.error(
+                "Supabase sipariş hatası:",
+                error
+            );
+
+            throw error;
+
+        }
+
+
+        /* =================================================
+           GEÇERLİ CEVAP KONTROLÜ
+        ================================================= */
+
+        if(
+            !data
+            ||
+            data.success !== true
+        ){
+
+            throw new Error(
+                "Sipariş oluşturulamadı."
+            );
+
+        }
+
+
+        /* =================================================
+           SUPABASE'İN VERDİĞİ GERÇEK SİPARİŞ NUMARASI
+        ================================================= */
+
+        const orderNumber =
+            data.order_number;
+
+
+        /* =================================================
+           SİPARİŞ BAŞARILI
+           ARTIK SEPETİ TEMİZLEYEBİLİRİZ
+        ================================================= */
+
+        cart = {};
+
+
+        localStorage.setItem(
+            "antochya_cart",
+            "{}"
+        );
+
+
+        renderProducts();
+
+        updateCartBar();
+
+
+        /* =================================================
+           BAŞARI EKRANI
+        ================================================= */
+
+        showSheet(`
+
+            <div class="success">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h2>
+                    SİPARİŞİN ALINDI
+                </h2>
+
+                <p>
+
+                    Sipariş numaran:
+
+                    <strong>
+                        #${orderNumber}
+                    </strong>
+
+                    <br><br>
+
+                    Siparişin Antochya Döner'e
+                    başarıyla iletildi.
+
+                    <br><br>
+
+                    Ödenecek Tutar:
+
+                    <strong>
+                        ${money(data.total_amount)}
+                    </strong>
+
+                </p>
+
+
+                <button
+                    class="primary"
+                    id="backToMenuButton"
+                >
+                    MENÜYE DÖN
+                </button>
+
             </div>
 
-            <h2>
-                SİPARİŞİN ALINDI
-            </h2>
-
-            <p>
-
-                Sipariş numaran:
-
-                <strong>
-                    #${orderNumber}
-                </strong>
-
-                <br><br>
-
-                Siparişiniz restorana iletilmek üzere hazırlandı.
-
-            </p>
+        `);
 
 
-            <button
-                class="primary"
-                id="backToMenuButton"
-            >
-                MENÜYE DÖN
-            </button>
-
-        </div>
-
-    `);
+        document
+        .getElementById(
+            "backToMenuButton"
+        )
+        .addEventListener(
+            "click",
+            closeSheet
+        );
 
 
-    document
-    .getElementById(
-        "backToMenuButton"
-    )
-    .addEventListener(
-        "click",
-        closeSheet
-    );
+    }
+
+    catch(error){
+
+
+        console.error(
+            "Sipariş gönderilemedi:",
+            error
+        );
+
+
+        alert(
+            "Sipariş gönderilemedi. Lütfen tekrar deneyin."
+        );
+
+
+        /* =================================================
+           HATA VARSA SEPET SİLİNMİYOR
+        ================================================= */
+
+        if(
+            button
+        ){
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                money(
+                    getFinalTotal()
+                )
+                +
+                " • SİPARİŞİ VER";
+
+            button.style.opacity =
+                "1";
+
+        }
+
+    }
 
 }
 
@@ -3765,7 +4031,7 @@ renderCategories();
 renderProducts();
 
 updateCartBar();
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </script>
 
 </body>
