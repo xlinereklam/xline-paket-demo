@@ -1880,6 +1880,74 @@ const RESTAURANT_SLUG =
     "antochya";
 let restaurantAcceptingOrders =
     null;
+   /* =========================================================
+   ÜRÜN STOK DURUMLARI
+========================================================= */
+
+let productStockStatus = {};
+
+
+/* =========================================================
+   STOK DURUMLARINI SUPABASE'DEN AL
+========================================================= */
+
+async function loadProductStockStatus(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+        .from("xd_products")
+        .select("product_id,active")
+        .eq(
+            "restaurant_id",
+            (
+                await supabaseClient
+                .from("xd_restaurants")
+                .select("id")
+                .eq("slug",RESTAURANT_SLUG)
+                .single()
+            ).data.id
+        );
+
+
+        if(error){
+            throw error;
+        }
+
+
+        productStockStatus = {};
+
+
+        (data || []).forEach(
+            function(product){
+
+                productStockStatus[
+                    product.product_id
+                ] =
+                    product.active === true;
+
+            }
+        );
+
+
+        renderProducts();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Ürün stok durumları alınamadı:",
+            error
+        );
+
+    }
+
+}
 /* =========================================================
    RESTORAN DURUMU
 ========================================================= */
@@ -2517,7 +2585,10 @@ function createProductCard(product){
         product.price
         -
         newPrice;
-
+const isAvailable =
+    productStockStatus[
+        product.id
+    ] !== false;
 
     card.innerHTML = `
 
@@ -2559,9 +2630,35 @@ function createProductCard(product){
                 alt="${product.name}"
             >
 
-            <div class="discount-badge">
-                %20 İNDİRİM
-            </div>
+            ${
+    isAvailable
+    ?
+    `
+        <div class="discount-badge">
+            %20 İNDİRİM
+        </div>
+    `
+    :
+    `
+        <div
+            style="
+                position:absolute;
+                left:6px;
+                top:6px;
+                padding:6px 9px;
+                border-radius:20px;
+                background:#111;
+                color:#fff;
+                font-size:9px;
+                font-weight:900;
+                letter-spacing:.3px;
+                z-index:5;
+            "
+        >
+            TÜKENDİ
+        </div>
+    `
+}
 
 
             <div
@@ -2599,10 +2696,37 @@ function createProductCard(product){
         );
 
 
+    if(isAvailable){
+
     renderQuantityControl(
         product,
         holder
     );
+
+}
+else{
+
+    holder.innerHTML = `
+
+        <div
+            style="
+                position:absolute;
+                right:6px;
+                bottom:6px;
+                padding:8px 10px;
+                border-radius:10px;
+                background:#e5e5e5;
+                color:#777;
+                font-size:9px;
+                font-weight:900;
+            "
+        >
+            TÜKENDİ
+        </div>
+
+    `;
+
+}
 
 
     return card;
@@ -5506,6 +5630,7 @@ renderCategories();
 renderProducts();
 updateCartBar();
 loadRestaurantStatus();
+loadProductStockStatus();
 startHomeOrderTracking();
 
 </script>
