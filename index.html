@@ -1463,7 +1463,17 @@ img{
 >
     RESTORAN DURUMU KONTROL EDİLİYOR...
 </div>
+<!-- =====================================================
+     AKTİF SİPARİŞ - ANA SAYFA
+===================================================== -->
 
+<div
+    id="homeActiveOrder"
+    style="
+        display:none;
+        margin:12px 14px 4px;
+    "
+></div>
 <header class="header">
 
 <div class="header-inner">
@@ -3955,7 +3965,7 @@ localStorage.setItem(
             new Date().toISOString()
     })
 );
-
+startHomeOrderTracking();
         /* =================================================
            SİPARİŞ BAŞARILI
            ARTIK SEPETİ TEMİZLEYEBİLİRİZ
@@ -4177,7 +4187,468 @@ document
 
 }
 }
+/* =========================================================
+   ANA SAYFA AKTİF SİPARİŞ TAKİBİ
+========================================================= */
 
+let homeOrderTrackingInterval = null;
+
+
+async function refreshHomeOrderTracking(){
+
+    const container =
+        document.getElementById(
+            "homeActiveOrder"
+        );
+
+
+    const savedOrder =
+        localStorage.getItem(
+            "antochya_active_order"
+        );
+
+
+    /*
+       AKTİF SİPARİŞ YOK
+    */
+
+    if(
+        !savedOrder
+    ){
+
+        container.style.display =
+            "none";
+
+        container.innerHTML =
+            "";
+
+        stopHomeOrderTracking();
+
+        return;
+
+    }
+
+
+    try{
+
+        const activeOrder =
+            JSON.parse(
+                savedOrder
+            );
+
+
+        if(
+            !activeOrder.tracking_token
+        ){
+
+            clearActiveOrder();
+
+            container.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.rpc(
+
+            "xd_track_order",
+
+            {
+                p_tracking_token:
+                    activeOrder.tracking_token
+            }
+
+        );
+
+
+        if(
+            error
+        ){
+
+            throw error;
+
+        }
+
+
+        if(
+            !data
+            ||
+            !data.status
+        ){
+
+            throw new Error(
+                "Sipariş durumu alınamadı."
+            );
+
+        }
+
+
+        renderHomeActiveOrder(
+            data,
+            activeOrder.tracking_token
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Ana sayfa sipariş takip hatası:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ANA SAYFADAKİ KARTI ÇİZ
+========================================================= */
+
+function renderHomeActiveOrder(
+    order,
+    trackingToken
+){
+
+    const container =
+        document.getElementById(
+            "homeActiveOrder"
+        );
+
+
+    if(
+        !container
+    ){
+        return;
+    }
+
+
+    const info =
+        getOrderStatusInfo(
+            order.status
+        );
+
+
+    /*
+       TESLİM / İPTAL
+    */
+
+    if(
+        order.status === "delivered"
+        ||
+        order.status === "cancelled"
+    ){
+
+        clearActiveOrder();
+
+        container.style.display =
+            "none";
+
+        container.innerHTML =
+            "";
+
+        stopHomeOrderTracking();
+
+        return;
+
+    }
+
+
+    const steps = [
+        "Alındı",
+        "Hazırlanıyor",
+        "Hazır",
+        "Yolda",
+        "Teslim"
+    ];
+
+
+    let progressHtml =
+        "";
+
+
+    steps.forEach(
+        function(
+            text,
+            index
+        ){
+
+            const number =
+                index + 1;
+
+
+            const completed =
+                number < info.step;
+
+
+            const current =
+                number === info.step;
+
+
+            let symbol =
+                "○";
+
+
+            if(
+                completed
+            ){
+
+                symbol =
+                    "✓";
+
+            }
+
+
+            if(
+                current
+            ){
+
+                symbol =
+                    "●";
+
+            }
+
+
+            progressHtml += `
+
+                <div
+                    style="
+                        flex:1;
+                        text-align:center;
+                        min-width:0;
+                    "
+                >
+
+                    <div
+                        style="
+                            font-size:18px;
+                            font-weight:900;
+                            margin-bottom:4px;
+                            opacity:${
+                                completed || current
+                                    ? "1"
+                                    : ".30"
+                            };
+                        "
+                    >
+                        ${symbol}
+                    </div>
+
+                    <div
+                        style="
+                            font-size:9px;
+                            font-weight:800;
+                            opacity:${
+                                completed || current
+                                    ? ".85"
+                                    : ".35"
+                            };
+                            white-space:nowrap;
+                            overflow:hidden;
+                            text-overflow:ellipsis;
+                        "
+                    >
+                        ${text}
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    container.style.display =
+        "block";
+
+
+    container.innerHTML = `
+
+        <div
+            style="
+                background:#111;
+                color:#fff;
+                border-radius:18px;
+                padding:16px;
+                box-shadow:
+                    0 8px 25px
+                    rgba(0,0,0,.14);
+            "
+        >
+
+            <div
+                style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:flex-start;
+                    gap:12px;
+                    margin-bottom:14px;
+                "
+            >
+
+                <div>
+
+                    <div
+                        style="
+                            font-size:10px;
+                            font-weight:800;
+                            opacity:.55;
+                            margin-bottom:4px;
+                        "
+                    >
+                        AKTİF SİPARİŞ
+                        #${order.order_number}
+                    </div>
+
+                    <div
+                        style="
+                            font-size:17px;
+                            font-weight:900;
+                        "
+                    >
+                        ${info.title}
+                    </div>
+
+                    <div
+                        style="
+                            font-size:11px;
+                            opacity:.65;
+                            margin-top:3px;
+                        "
+                    >
+                        ${info.message}
+                    </div>
+
+                </div>
+
+
+                <div
+                    style="
+                        font-size:27px;
+                        flex-shrink:0;
+                    "
+                >
+                    ${info.icon}
+                </div>
+
+            </div>
+
+
+            <div
+                style="
+                    display:flex;
+                    align-items:flex-start;
+                    justify-content:space-between;
+                    margin-bottom:14px;
+                "
+            >
+
+                ${progressHtml}
+
+            </div>
+
+
+            <button
+                type="button"
+                id="homeTrackOrderButton"
+                style="
+                    width:100%;
+                    border:0;
+                    border-radius:12px;
+                    padding:11px 12px;
+                    background:#fff;
+                    color:#111;
+                    font-size:11px;
+                    font-weight:900;
+                    cursor:pointer;
+                "
+            >
+                SİPARİŞ DETAYLARINI GÖR
+            </button>
+
+        </div>
+
+    `;
+
+
+    const button =
+        document.getElementById(
+            "homeTrackOrderButton"
+        );
+
+
+    if(
+        button
+    ){
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                openOrderTracking(
+                    trackingToken
+                );
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ANA SAYFA TAKİBİNİ BAŞLAT
+========================================================= */
+
+function startHomeOrderTracking(){
+
+    stopHomeOrderTracking();
+
+
+    refreshHomeOrderTracking();
+
+
+    homeOrderTrackingInterval =
+        setInterval(
+
+            refreshHomeOrderTracking,
+
+            5000
+
+        );
+
+}
+
+
+/* =========================================================
+   ANA SAYFA TAKİBİNİ DURDUR
+========================================================= */
+
+function stopHomeOrderTracking(){
+
+    if(
+        homeOrderTrackingInterval
+    ){
+
+        clearInterval(
+            homeOrderTrackingInterval
+        );
+
+        homeOrderTrackingInterval =
+            null;
+
+    }
+
+}
 /* =========================================================
    MÜŞTERİ SİPARİŞ TAKİP SİSTEMİ
 ========================================================= */
@@ -5035,59 +5506,8 @@ renderCategories();
 renderProducts();
 updateCartBar();
 loadRestaurantStatus();
-/* =========================================================
-   DEVAM EDEN SİPARİŞ VAR MI?
-========================================================= */
+startHomeOrderTracking();
 
-const savedActiveOrder =
-    localStorage.getItem(
-        "antochya_active_order"
-    );
-
-
-if(
-    savedActiveOrder
-){
-
-    try{
-
-        const activeOrder =
-            JSON.parse(
-                savedActiveOrder
-            );
-
-
-        if(
-            activeOrder.tracking_token
-        ){
-
-            setTimeout(
-                function(){
-
-                    openOrderTracking(
-                        activeOrder.tracking_token
-                    );
-
-                },
-                700
-            );
-
-        }
-
-    }
-
-    catch(error){
-
-        console.error(
-            "Kayıtlı sipariş okunamadı:",
-            error
-        );
-
-        clearActiveOrder();
-
-    }
-
-}
 </script>
 
 </body>
