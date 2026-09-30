@@ -1801,6 +1801,7 @@ SEPETİ GÖR →
     id="sheet"
 ></section>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
@@ -1809,6 +1810,8 @@ SEPETİ GÖR →
 ========================================================= */
 
 const DISCOUNT_RATE = 0.20;
+
+
 /* =========================================================
    SUPABASE
 ========================================================= */
@@ -1825,7 +1828,9 @@ const supabaseClient =
         SUPABASE_KEY
     );
 
-const RESTAURANT_SLUG = "antochya";
+const RESTAURANT_SLUG =
+    "antochya";
+
 
 /* =========================================================
    ÜRÜNLER
@@ -4031,7 +4036,7 @@ renderCategories();
 renderProducts();
 
 updateCartBar();
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </script>
 
 </body>
