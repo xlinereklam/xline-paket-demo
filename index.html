@@ -4178,7 +4178,690 @@ document
 }
 }
 
+/* =========================================================
+   MÜŞTERİ SİPARİŞ TAKİP SİSTEMİ
+========================================================= */
 
+let orderTrackingInterval = null;
+
+
+/* =========================================================
+   DURUM BİLGİLERİ
+========================================================= */
+
+function getOrderStatusInfo(status){
+
+    const statuses = {
+
+        new:{
+            title:"SİPARİŞ ALINDI",
+            message:"Siparişiniz restorana ulaştı.",
+            icon:"✓",
+            step:1
+        },
+
+        preparing:{
+            title:"HAZIRLANIYOR",
+            message:"Siparişiniz mutfakta hazırlanıyor.",
+            icon:"👨‍🍳",
+            step:2
+        },
+
+        ready:{
+            title:"SİPARİŞİNİZ HAZIR",
+            message:"Siparişiniz hazırlandı ve kurye için bekliyor.",
+            icon:"✓",
+            step:3
+        },
+
+        courier:{
+            title:"SİPARİŞİNİZ YOLDA",
+            message:"Siparişiniz kuryeye teslim edildi ve size doğru geliyor.",
+            icon:"🛵",
+            step:4
+        },
+
+        delivered:{
+            title:"TESLİM EDİLDİ",
+            message:"Siparişiniz teslim edildi. Afiyet olsun!",
+            icon:"✓",
+            step:5
+        },
+
+        cancelled:{
+            title:"SİPARİŞ İPTAL EDİLDİ",
+            message:"Siparişiniz restoran tarafından iptal edildi.",
+            icon:"✕",
+            step:0
+        }
+
+    };
+
+
+    return statuses[status]
+        ||
+        {
+            title:"SİPARİŞ DURUMU",
+            message:"Sipariş durumunuz kontrol ediliyor.",
+            icon:"•",
+            step:0
+        };
+
+}
+
+
+/* =========================================================
+   TAKİP ADIMI
+========================================================= */
+
+function trackingStep(
+    number,
+    currentStep,
+    text
+){
+
+    let symbol = "○";
+
+    let opacity = ".45";
+
+    let weight = "600";
+
+
+    if(
+        number < currentStep
+    ){
+
+        symbol = "✓";
+        opacity = "1";
+
+    }
+
+
+    if(
+        number === currentStep
+    ){
+
+        symbol = "●";
+        opacity = "1";
+        weight = "900";
+
+    }
+
+
+    return `
+
+        <div
+            style="
+                display:flex;
+                align-items:center;
+                gap:12px;
+                padding:8px 0;
+                opacity:${opacity};
+                font-weight:${weight};
+            "
+        >
+
+            <div
+                style="
+                    width:25px;
+                    text-align:center;
+                    font-size:19px;
+                "
+            >
+                ${symbol}
+            </div>
+
+            <div>
+                ${text}
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   TAKİP EKRANINI AÇ
+========================================================= */
+
+async function openOrderTracking(
+    trackingToken
+){
+
+    if(
+        !trackingToken
+    ){
+        return;
+    }
+
+
+    /*
+       Eski bir takip döngüsü varsa durdur.
+    */
+
+    if(
+        orderTrackingInterval
+    ){
+
+        clearInterval(
+            orderTrackingInterval
+        );
+
+        orderTrackingInterval =
+            null;
+
+    }
+
+
+    /*
+       İlk olarak yükleme ekranını göster.
+    */
+
+    showSheet(`
+
+        <div class="success">
+
+            <div
+                style="
+                    font-size:42px;
+                    margin-bottom:15px;
+                "
+            >
+                ⏳
+            </div>
+
+            <h2>
+                SİPARİŞ DURUMU
+            </h2>
+
+            <p>
+                Siparişiniz kontrol ediliyor...
+            </p>
+
+        </div>
+
+    `);
+
+
+    /*
+       İlk sorguyu hemen yap.
+    */
+
+    await refreshOrderTracking(
+        trackingToken
+    );
+
+
+    /*
+       Daha sonra 5 saniyede bir kontrol et.
+    */
+
+    orderTrackingInterval =
+        setInterval(
+
+            function(){
+
+                refreshOrderTracking(
+                    trackingToken
+                );
+
+            },
+
+            5000
+
+        );
+
+}
+
+
+/* =========================================================
+   SUPABASE'DEN SİPARİŞ DURUMUNU AL
+========================================================= */
+
+async function refreshOrderTracking(
+    trackingToken
+){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.rpc(
+
+            "xd_track_order",
+
+            {
+                p_tracking_token:
+                    trackingToken
+            }
+
+        );
+
+
+        if(
+            error
+        ){
+
+            throw error;
+
+        }
+
+
+        if(
+            !data
+            ||
+            !data.status
+        ){
+
+            throw new Error(
+                "Sipariş bilgisi alınamadı."
+            );
+
+        }
+
+
+        renderOrderTracking(
+            data,
+            trackingToken
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Sipariş takip hatası:",
+            error
+        );
+
+
+        showSheet(`
+
+            <div class="success">
+
+                <div
+                    style="
+                        font-size:45px;
+                        margin-bottom:15px;
+                    "
+                >
+                    !
+                </div>
+
+                <h2>
+                    TAKİP BİLGİSİ ALINAMADI
+                </h2>
+
+                <p>
+                    Sipariş durumunuz şu anda
+                    görüntülenemiyor.
+                    <br><br>
+                    Lütfen kısa bir süre sonra
+                    tekrar deneyin.
+                </p>
+
+                <button
+                    class="primary"
+                    id="trackingErrorBackButton"
+                >
+                    MENÜYE DÖN
+                </button>
+
+            </div>
+
+        `);
+
+
+        const errorButton =
+            document.getElementById(
+                "trackingErrorBackButton"
+            );
+
+
+        if(
+            errorButton
+        ){
+
+            errorButton.addEventListener(
+                "click",
+                function(){
+
+                    stopOrderTracking();
+
+                    closeSheet();
+
+                }
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   TAKİP EKRANINI ÇİZ
+========================================================= */
+
+function renderOrderTracking(
+    order,
+    trackingToken
+){
+
+    const info =
+        getOrderStatusInfo(
+            order.status
+        );
+
+
+    /*
+       İPTAL EDİLDİ
+    */
+
+    if(
+        order.status ===
+        "cancelled"
+    ){
+
+        showSheet(`
+
+            <div class="success">
+
+                <div
+                    style="
+                        font-size:50px;
+                        margin-bottom:12px;
+                    "
+                >
+                    ✕
+                </div>
+
+                <h2>
+                    SİPARİŞ İPTAL EDİLDİ
+                </h2>
+
+                <p>
+
+                    Sipariş:
+
+                    <strong>
+                        #${order.order_number}
+                    </strong>
+
+                    <br><br>
+
+                    Siparişiniz restoran tarafından
+                    iptal edildi.
+
+                </p>
+
+                <button
+                    class="primary"
+                    id="cancelledOrderBackButton"
+                >
+                    MENÜYE DÖN
+                </button>
+
+            </div>
+
+        `);
+
+
+        stopOrderTracking();
+
+
+        const cancelledButton =
+            document.getElementById(
+                "cancelledOrderBackButton"
+            );
+
+
+        if(
+            cancelledButton
+        ){
+
+            cancelledButton.addEventListener(
+                "click",
+                function(){
+
+                    clearActiveOrder();
+
+                    closeSheet();
+
+                }
+            );
+
+        }
+
+
+        return;
+
+    }
+
+
+    /*
+       NORMAL TAKİP EKRANI
+    */
+
+    showSheet(`
+
+        <div>
+
+            <div
+                style="
+                    text-align:center;
+                    margin-bottom:20px;
+                "
+            >
+
+                <div
+                    style="
+                        font-size:46px;
+                        margin-bottom:8px;
+                    "
+                >
+                    ${info.icon}
+                </div>
+
+                <div
+                    style="
+                        font-size:12px;
+                        font-weight:800;
+                        opacity:.55;
+                        margin-bottom:5px;
+                    "
+                >
+                    SİPARİŞ #${order.order_number}
+                </div>
+
+                <h2
+                    style="
+                        margin:0 0 8px 0;
+                    "
+                >
+                    ${info.title}
+                </h2>
+
+                <div
+                    style="
+                        font-size:13px;
+                        opacity:.7;
+                        line-height:1.5;
+                    "
+                >
+                    ${info.message}
+                </div>
+
+            </div>
+
+
+            <div
+                style="
+                    padding:15px;
+                    border-radius:16px;
+                    background:rgba(0,0,0,.04);
+                    margin-bottom:18px;
+                "
+            >
+
+                ${trackingStep(
+                    1,
+                    info.step,
+                    "Sipariş Alındı"
+                )}
+
+                ${trackingStep(
+                    2,
+                    info.step,
+                    "Hazırlanıyor"
+                )}
+
+                ${trackingStep(
+                    3,
+                    info.step,
+                    "Hazır"
+                )}
+
+                ${trackingStep(
+                    4,
+                    info.step,
+                    "Kuryeye Verildi"
+                )}
+
+                ${trackingStep(
+                    5,
+                    info.step,
+                    "Teslim Edildi"
+                )}
+
+            </div>
+
+
+            <div
+                style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    padding:14px 0;
+                    margin-bottom:10px;
+                    border-top:1px solid rgba(0,0,0,.08);
+                    border-bottom:1px solid rgba(0,0,0,.08);
+                "
+            >
+
+                <span
+                    style="
+                        font-size:13px;
+                        font-weight:700;
+                    "
+                >
+                    TOPLAM
+                </span>
+
+                <strong
+                    style="
+                        font-size:18px;
+                    "
+                >
+                    ${money(order.total_amount)}
+                </strong>
+
+            </div>
+
+
+            <button
+                class="primary"
+                id="trackingBackButton"
+            >
+                MENÜYE DÖN
+            </button>
+
+        </div>
+
+    `);
+
+
+    const backButton =
+        document.getElementById(
+            "trackingBackButton"
+        );
+
+
+    if(
+        backButton
+    ){
+
+        backButton.addEventListener(
+            "click",
+            function(){
+
+                stopOrderTracking();
+
+                closeSheet();
+
+            }
+        );
+
+    }
+
+
+    /*
+       TESLİM EDİLDİYSE
+       ARTIK AKTİF SİPARİŞ DEĞİL.
+    */
+
+    if(
+        order.status ===
+        "delivered"
+    ){
+
+        stopOrderTracking();
+
+        clearActiveOrder();
+
+    }
+
+}
+
+
+/* =========================================================
+   TAKİBİ DURDUR
+========================================================= */
+
+function stopOrderTracking(){
+
+    if(
+        orderTrackingInterval
+    ){
+
+        clearInterval(
+            orderTrackingInterval
+        );
+
+        orderTrackingInterval =
+            null;
+
+    }
+
+}
+
+
+/* =========================================================
+   AKTİF SİPARİŞİ TEMİZLE
+========================================================= */
+
+function clearActiveOrder(){
+
+    localStorage.removeItem(
+        "antochya_active_order"
+    );
+
+}
 /* =========================================================
    ARAMA
 ========================================================= */
@@ -4352,7 +5035,59 @@ renderCategories();
 renderProducts();
 updateCartBar();
 loadRestaurantStatus();
+/* =========================================================
+   DEVAM EDEN SİPARİŞ VAR MI?
+========================================================= */
 
+const savedActiveOrder =
+    localStorage.getItem(
+        "antochya_active_order"
+    );
+
+
+if(
+    savedActiveOrder
+){
+
+    try{
+
+        const activeOrder =
+            JSON.parse(
+                savedActiveOrder
+            );
+
+
+        if(
+            activeOrder.tracking_token
+        ){
+
+            setTimeout(
+                function(){
+
+                    openOrderTracking(
+                        activeOrder.tracking_token
+                    );
+
+                },
+                700
+            );
+
+        }
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Kayıtlı sipariş okunamadı:",
+            error
+        );
+
+        clearActiveOrder();
+
+    }
+
+}
 </script>
 
 </body>
