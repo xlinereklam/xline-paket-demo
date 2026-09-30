@@ -1923,15 +1923,57 @@ async function loadProductStockStatus(){
 
 
         (data || []).forEach(
-            function(product){
+    function(product){
 
-                productStockStatus[
-                    product.product_id
-                ] =
-                    product.active === true;
+        productStockStatus[
+            product.product_id
+        ] =
+            product.active === true;
 
-            }
-        );
+    }
+);
+
+
+/* =====================================================
+   TÜKENEN ÜRÜNLERİ SEPETTEN ÇIKAR
+===================================================== */
+
+let cartChanged = false;
+
+
+Object.keys(cart).forEach(
+    function(productId){
+
+        if(
+            productStockStatus[
+                Number(productId)
+            ] === false
+        ){
+
+            delete cart[
+                productId
+            ];
+
+            cartChanged = true;
+
+        }
+
+    }
+);
+
+
+if(cartChanged){
+
+    localStorage.setItem(
+        "antochya_cart",
+        JSON.stringify(cart)
+    );
+
+}
+
+
+renderProducts();
+updateCartBar();
 
 
         renderProducts();
@@ -3823,7 +3865,11 @@ async function placeOrder(){
     /* =====================================================
        SEPET KONTROLÜ
     ===================================================== */
+/* =====================================================
+   SİPARİŞTEN HEMEN ÖNCE STOK KONTROLÜ
+===================================================== */
 
+await loadProductStockStatus();
     const items =
         getCartItems();
 
