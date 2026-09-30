@@ -3863,29 +3863,67 @@ async function placeOrder(){
 
 
     /* =====================================================
-       SEPET KONTROLÜ
-    ===================================================== */
-/* =====================================================
-   SİPARİŞTEN HEMEN ÖNCE STOK KONTROLÜ
+   SEPET + GÜNCEL STOK KONTROLÜ
 ===================================================== */
 
+/*
+    Stok kontrolünden ÖNCE sepette
+    kaç farklı ürün olduğunu kaydediyoruz.
+*/
+const cartCountBeforeStockCheck =
+    Object.keys(cart).length;
+
+
+/*
+    Supabase'den güncel stok durumunu al.
+    Tükenen ürün varsa loadProductStockStatus()
+    onu sepetten çıkaracak.
+*/
 await loadProductStockStatus();
-    const items =
-        getCartItems();
 
 
+/*
+    Stok kontrolünden SONRA
+    sepeti yeniden oluştur.
+*/
+const items =
+    getCartItems();
+
+
+if(
+    items.length === 0
+){
+
+    /*
+        Kontrolden önce ürün vardı,
+        fakat şimdi yoksa ürün tükenmiştir.
+    */
     if(
-        items.length === 0
+        cartCountBeforeStockCheck > 0
     ){
+
+        alert(
+            "Sepetinizdeki ürün ne yazık ki az önce tükendi. Ürün sepetinizden çıkarıldı."
+        );
+
+    }
+
+    /*
+        Baştan beri ürün yoksa
+        gerçekten boş sepettir.
+    */
+    else{
 
         alert(
             "Sepetiniz boş."
         );
 
-        return;
-
     }
 
+
+    return;
+
+}
 
     /* =====================================================
        ÖDEME YÖNTEMİ
