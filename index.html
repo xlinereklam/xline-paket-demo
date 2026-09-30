@@ -3823,42 +3823,119 @@ async function placeOrder(){
     catch(error){
 
 
-        console.error(
-            "Sipariş gönderilemedi:",
-            error
+    console.error(
+        "Sipariş gönderilemedi:",
+        error
+    );
+
+
+    /* =================================================
+       RESTORAN SİPARİŞE KAPALI
+    ================================================= */
+
+    const errorText =
+        [
+            error?.message,
+            error?.details,
+            error?.hint,
+            error?.code
+        ]
+        .filter(Boolean)
+        .join(" ");
+
+
+    if(
+        errorText.includes(
+            "RESTAURANT_CLOSED"
+        )
+    ){
+
+        showSheet(`
+
+            <div class="success">
+
+                <div
+                    style="
+                        font-size:52px;
+                        margin-bottom:15px;
+                    "
+                >
+                    🕒
+                </div>
+
+                <h2>
+                    SERVİSİMİZ ŞU ANDA KAPALI
+                </h2>
+
+                <p>
+                    Restoranımız şu anda
+                    paket servis hizmeti vermemektedir.
+                    <br><br>
+                    Çalışma saatlerimiz içerisinde
+                    tekrar sipariş verebilirsiniz.
+                </p>
+
+                <button
+                    class="primary"
+                    id="closedBackButton"
+                >
+                    MENÜYE DÖN
+                </button>
+
+            </div>
+
+        `);
+
+
+        document
+        .getElementById(
+            "closedBackButton"
+        )
+        .addEventListener(
+            "click",
+            closeSheet
         );
-
-
-        alert(
-            "Sipariş gönderilemedi. Lütfen tekrar deneyin."
-        );
-
-
-        /* =================================================
-           HATA VARSA SEPET SİLİNMİYOR
-        ================================================= */
-
-        if(
-            button
-        ){
-
-            button.disabled =
-                false;
-
-            button.textContent =
-                money(
-                    getFinalTotal()
-                )
-                +
-                " • SİPARİŞİ VER";
-
-            button.style.opacity =
-                "1";
-
-        }
 
     }
 
+
+    /* =================================================
+       DİĞER TEKNİK HATALAR
+    ================================================= */
+
+    else{
+
+        alert(
+            "Siparişiniz şu anda iletilemedi. Lütfen kısa bir süre sonra tekrar deneyin."
+        );
+
+    }
+
+
+    /* =================================================
+       HATA VARSA SEPET SİLİNMİYOR
+    ================================================= */
+
+    if(
+        button
+    ){
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            money(
+                getFinalTotal()
+            )
+            +
+            " • SİPARİŞİ VER";
+
+        button.style.opacity =
+            "1";
+
+    }
+
+}
 }
 
 
