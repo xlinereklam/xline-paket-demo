@@ -8,43 +8,29 @@
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 >
 
-<meta name="theme-color" content="#d9251d">
+<meta name="theme-color" content="#d71920">
 
 <title>Antochya Döner | Online Sipariş</title>
 
-<!-- FONTLAR -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 
 <style>
 
-/* =========================================================
-   TEMEL AYARLAR
-========================================================= */
-
 :root{
-
-    --red:#d9251d;
-    --red-dark:#a91612;
+    --red:#d71920;
+    --red-dark:#a90f14;
     --orange:#ff6a00;
-    --orange-light:#ff8a1f;
-
-    --black:#111111;
-    --black-soft:#1c1c1c;
-
+    --orange-light:#ff8a00;
+    --black:#141414;
     --white:#ffffff;
-    --offwhite:#f7f5f2;
-
-    --gray:#747474;
-    --gray-light:#ece8e3;
-
-    --shadow:
-        0 12px 35px rgba(0,0,0,.10);
-
-    --radius:22px;
+    --cream:#f7f3ef;
+    --gray:#707070;
+    --line:#ece6df;
+    --green:#138a49;
 }
 
 *{
@@ -58,54 +44,46 @@ html{
 }
 
 body{
-
     font-family:'Poppins',sans-serif;
-
-    background:
-        #f7f5f2;
-
+    background:var(--cream);
     color:var(--black);
-
-    min-height:100vh;
-
     padding-bottom:110px;
 }
 
 button,
 input,
 textarea{
+    font-family:inherit;
+}
 
-    font-family:'Poppins',sans-serif;
+img{
+    display:block;
 }
 
 
-/* =========================================================
+/* ======================================================
    HEADER
-========================================================= */
+====================================================== */
 
 .header{
-
     background:
-
         radial-gradient(
-            circle at top right,
-            rgba(255,106,0,.55),
-            transparent 35%
+            circle at 90% 0%,
+            rgba(255,119,0,.8),
+            transparent 34%
         ),
-
         linear-gradient(
             135deg,
-            #c41610,
-            #ed2b1f 58%,
-            #ff5b00
+            #b90d14,
+            #dc171d 55%,
+            #ff5d00
         );
 
-    color:#fff;
+    color:white;
 
     padding:
-
         18px
-        18px
+        16px
         28px;
 
     position:relative;
@@ -113,506 +91,390 @@ textarea{
     overflow:hidden;
 }
 
-.header::before{
-
+.header:before{
     content:"";
-
     position:absolute;
-
-    width:240px;
-    height:240px;
-
-    border:
-
-        40px solid
-        rgba(255,255,255,.04);
-
+    width:260px;
+    height:260px;
+    border:45px solid rgba(255,255,255,.04);
     border-radius:50%;
-
-    right:-100px;
-    top:-120px;
+    right:-110px;
+    top:-140px;
 }
 
 .header-inner{
-
-    max-width:760px;
-
-    margin:auto;
-
     position:relative;
-
     z-index:2;
+    max-width:780px;
+    margin:auto;
 }
 
-
-/* =========================================================
-   RESTORAN ÜST BİLGİ
-========================================================= */
-
-.restaurant-top{
-
+.restaurant-head{
     display:flex;
-
     align-items:center;
-
     gap:14px;
 }
 
 .logo-box{
+    width:76px;
+    height:76px;
 
-    width:72px;
-    height:72px;
-
-    flex:none;
+    background:white;
 
     border-radius:20px;
 
-    background:#fff;
-
-    padding:7px;
+    padding:6px;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     box-shadow:
-
-        0 10px 30px
+        0 12px 26px
         rgba(0,0,0,.22);
+
+    flex:none;
 }
 
 .logo-box img{
-
     width:100%;
     height:100%;
-
     object-fit:contain;
-
     border-radius:14px;
 }
 
 .restaurant-info{
-
     flex:1;
 }
 
-.restaurant-info h1{
-
-    font-family:'Bebas Neue',sans-serif;
-
-    font-size:33px;
-
-    font-weight:400;
-
-    letter-spacing:1px;
-
+.restaurant-name{
+    font-family:'Archivo Black',sans-serif;
+    font-size:25px;
     line-height:1;
-
-    margin-bottom:4px;
+    letter-spacing:-.8px;
+    margin-bottom:7px;
 }
 
-.restaurant-info p{
-
-    font-size:12px;
-
+.restaurant-sub{
+    font-size:11px;
     opacity:.9;
 }
 
-.rating-row{
-
+.restaurant-tags{
     display:flex;
-
-    gap:7px;
-
-    margin-top:7px;
-
     flex-wrap:wrap;
+    gap:6px;
+    margin-top:8px;
 }
 
-.mini-badge{
-
-    font-size:10px;
-
-    font-weight:700;
-
+.tag{
+    font-size:9px;
     padding:5px 8px;
-
     border-radius:30px;
-
-    background:
-
-        rgba(255,255,255,.16);
-
-    border:
-
-        1px solid
-        rgba(255,255,255,.16);
-
-    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.15);
+    font-weight:700;
 }
 
 
-/* =========================================================
-   TESLİMAT BİLGİ KUTUSU
-========================================================= */
+/* ======================================================
+   %20 KAMPANYA
+====================================================== */
 
-.delivery-card{
-
+.discount-banner{
     margin-top:20px;
 
-    background:
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-        rgba(20,20,20,.92);
+    background:#111;
 
     border-radius:18px;
 
-    padding:
-
-        14px 15px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
+    padding:13px 14px;
 
     box-shadow:
-
-        0 13px 30px
-        rgba(0,0,0,.18);
+        0 12px 28px
+        rgba(0,0,0,.20);
 }
 
-.delivery-left{
+.discount-circle{
+    width:55px;
+    height:55px;
 
-    display:flex;
-
-    align-items:center;
-
-    gap:11px;
-}
-
-.delivery-icon{
-
-    width:42px;
-    height:42px;
-
-    border-radius:13px;
+    border-radius:50%;
 
     background:
-
         linear-gradient(
             135deg,
             var(--orange),
             var(--red)
         );
 
-    display:grid;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    place-items:center;
+    font-weight:800;
+    font-size:16px;
 
-    font-size:21px;
+    flex:none;
+
+    box-shadow:
+        0 7px 20px
+        rgba(255,70,0,.35);
 }
 
-.delivery-card strong{
+.discount-copy{
+    flex:1;
+}
 
+.discount-copy strong{
     display:block;
-
     font-size:13px;
 }
 
-.delivery-card small{
-
+.discount-copy small{
     display:block;
-
-    font-size:10px;
-
-    color:#d9d9d9;
-
+    font-size:9.5px;
+    color:#cfcfcf;
+    line-height:1.45;
     margin-top:3px;
 }
 
-.free-text{
-
-    font-size:11px;
-
-    font-weight:800;
-
-    color:#fff;
-
-    border:
-
-        1px solid
-        rgba(255,255,255,.25);
+.delivery-pill{
+    background:white;
+    color:#111;
 
     padding:7px 9px;
 
     border-radius:30px;
-}
-
-
-/* =========================================================
-   SLIDER
-========================================================= */
-
-.slider-section{
-
-    max-width:760px;
-
-    margin:
-
-        -10px auto
-        0;
-
-    padding:
-
-        0 14px;
-
-    position:relative;
-
-    z-index:4;
-}
-
-.slider{
-
-    position:relative;
-
-    height:180px;
-
-    border-radius:24px;
-
-    overflow:hidden;
-
-    box-shadow:var(--shadow);
-
-    background:#222;
-}
-
-.slide{
-
-    position:absolute;
-
-    inset:0;
-
-    opacity:0;
-
-    transition:
-
-        opacity .45s ease;
-
-    background-size:cover;
-
-    background-position:center;
-
-    display:flex;
-
-    align-items:flex-end;
-}
-
-.slide.active{
-
-    opacity:1;
-}
-
-.slide::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-
-        linear-gradient(
-            to top,
-            rgba(0,0,0,.82),
-            rgba(0,0,0,.05)
-        );
-}
-
-.slide-content{
-
-    position:relative;
-
-    z-index:2;
-
-    color:#fff;
-
-    padding:20px;
-
-    width:100%;
-}
-
-.slide-content span{
-
-    display:inline-block;
-
-    background:var(--red);
 
     font-size:9px;
 
     font-weight:800;
 
-    padding:
+    white-space:nowrap;
+}
 
-        5px 8px;
 
-    border-radius:20px;
+/* ======================================================
+   SLIDER
+====================================================== */
 
-    margin-bottom:6px;
+.slider-wrapper{
+    max-width:780px;
+    margin:-11px auto 0;
+    padding:0 14px;
+    position:relative;
+    z-index:5;
+}
+
+.slider{
+    height:240px;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:#222;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.16);
+}
+
+.slide{
+    position:absolute;
+    inset:0;
+
+    opacity:0;
+
+    transition:
+        opacity .45s ease;
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:flex-end;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+.slide:before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.92),
+            rgba(0,0,0,.12) 65%,
+            rgba(0,0,0,.05)
+        );
+}
+
+.slide-content{
+    position:relative;
+    z-index:2;
+
+    padding:22px;
+
+    color:white;
+
+    max-width:78%;
+}
+
+.slide-badge{
+    display:inline-block;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--orange)
+        );
+
+    color:white;
+
+    border-radius:30px;
+
+    padding:5px 9px;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    margin-bottom:8px;
 }
 
 .slide-content h2{
+    font-family:'Archivo Black',sans-serif;
 
-    font-family:'Bebas Neue';
+    font-size:23px;
 
-    font-size:27px;
+    line-height:1.08;
 
-    letter-spacing:.5px;
-
-    line-height:1.05;
+    letter-spacing:-.7px;
 }
 
 .slide-content p{
-
     font-size:10px;
-
-    margin-top:5px;
-
-    opacity:.92;
+    margin-top:6px;
+    line-height:1.5;
+    color:#eee;
 }
 
 .slider-dots{
-
     position:absolute;
 
-    bottom:12px;
-
     right:16px;
+    bottom:15px;
 
     z-index:4;
 
     display:flex;
-
     gap:5px;
 }
 
-.dot{
+.slider-dot{
+    border:0;
 
     width:7px;
     height:7px;
 
     border-radius:20px;
 
-    border:none;
-
-    background:
-
-        rgba(255,255,255,.45);
+    background:rgba(255,255,255,.4);
 
     transition:.2s;
 }
 
-.dot.active{
-
+.slider-dot.active{
     width:22px;
-
-    background:#fff;
+    background:white;
 }
 
 
-/* =========================================================
-   ANA ALAN
-========================================================= */
+/* ======================================================
+   MAIN
+====================================================== */
 
 .container{
-
-    max-width:760px;
-
+    max-width:780px;
     margin:auto;
 }
 
 
-/* =========================================================
-   ARAMA
-========================================================= */
+/* ======================================================
+   SEARCH
+====================================================== */
 
 .search-area{
-
     padding:
-
         18px
         14px
-        4px;
+        5px;
 }
 
 .search-box{
-
-    background:#fff;
-
     display:flex;
-
     align-items:center;
 
-    gap:9px;
+    background:white;
+
+    border:1px solid var(--line);
 
     border-radius:16px;
 
     padding:
-
-        0 15px;
-
-    border:
-
-        1px solid
-        #e9e4df;
+        0
+        14px;
 
     box-shadow:
-
         0 5px 18px
         rgba(0,0,0,.04);
 }
 
-.search-box span{
-
+.search-icon{
     font-size:18px;
+    margin-right:9px;
 }
 
 .search-box input{
-
-    border:none;
-
     width:100%;
-
-    outline:none;
+    border:0;
+    outline:0;
+    background:transparent;
 
     padding:
+        14px
+        0;
 
-        14px 0;
-
-    font-size:13px;
-
-    background:transparent;
+    font-size:12px;
 }
 
 
-/* =========================================================
-   KATEGORİ
-========================================================= */
+/* ======================================================
+   CATEGORY
+====================================================== */
 
 .categories{
-
     display:flex;
-
     gap:8px;
 
-    overflow-x:auto;
+    overflow:auto;
 
     padding:
-
-        11px
+        10px
         14px
         12px;
 
@@ -620,64 +482,49 @@ textarea{
 
     top:0;
 
-    z-index:20;
+    z-index:30;
 
     background:
+        rgba(247,243,239,.94);
 
-        rgba(247,245,242,.95);
-
-    backdrop-filter:
-
-        blur(12px);
+    backdrop-filter:blur(12px);
 
     border-bottom:
-
-        1px solid
-        rgba(0,0,0,.04);
+        1px solid rgba(0,0,0,.04);
 }
 
 .categories::-webkit-scrollbar{
-
     display:none;
 }
 
-.category-button{
-
-    border:none;
-
-    background:#fff;
-
-    color:#4c4c4c;
-
-    white-space:nowrap;
+.category{
+    border:0;
 
     padding:
-
-        9px
-        13px;
+        10px
+        14px;
 
     border-radius:30px;
 
-    font-size:11px;
+    white-space:nowrap;
+
+    background:white;
+
+    color:#444;
+
+    font-size:10px;
 
     font-weight:700;
 
     box-shadow:
-
-        0 4px 12px
+        0 3px 10px
         rgba(0,0,0,.04);
-
-    cursor:pointer;
-
-    transition:.2s;
 }
 
-.category-button.active{
-
-    color:#fff;
+.category.active{
+    color:white;
 
     background:
-
         linear-gradient(
             135deg,
             var(--red),
@@ -685,319 +532,320 @@ textarea{
         );
 
     box-shadow:
-
         0 7px 18px
-        rgba(220,40,25,.22);
+        rgba(215,25,32,.23);
 }
 
 
-/* =========================================================
-   MENÜ
-========================================================= */
+/* ======================================================
+   SECTION
+====================================================== */
 
 .menu-section{
-
     padding:
-
-        12px 14px;
+        10px
+        14px
+        8px;
 }
 
-.section-title{
-
+.section-heading{
     display:flex;
-
+    align-items:end;
     justify-content:space-between;
 
-    align-items:end;
-
     margin:
-
-        8px
+        9px
         1px
         12px;
 }
 
-.section-title h2{
+.section-heading h2{
+    font-family:'Archivo Black',sans-serif;
 
-    font-family:'Bebas Neue';
+    font-size:18px;
 
-    font-size:27px;
-
-    font-weight:400;
-
-    letter-spacing:.7px;
+    letter-spacing:-.4px;
 }
 
-.section-title span{
-
-    font-size:10px;
-
+.section-heading span{
+    font-size:9px;
     color:#999;
 }
 
 
-/* =========================================================
-   ÜRÜN
-========================================================= */
+/* ======================================================
+   PRODUCT GRID
+====================================================== */
 
-.products{
-
+.product-grid{
     display:grid;
-
     grid-template-columns:1fr;
-
-    gap:12px;
+    gap:11px;
 }
 
-.product-card{
 
-    background:#fff;
+/* ======================================================
+   PRODUCT CARD
+====================================================== */
+
+.product-card{
+    background:white;
 
     border-radius:20px;
 
-    border:
-
-        1px solid
-        #eee8e3;
+    border:1px solid var(--line);
 
     padding:11px;
 
     display:grid;
 
     grid-template-columns:
-
         1fr
-        112px;
+        115px;
 
     gap:12px;
 
+    position:relative;
+
     box-shadow:
-
-        0 6px 20px
-        rgba(0,0,0,.035);
-
-    transition:
-
-        transform .2s,
-        box-shadow .2s;
+        0 7px 20px
+        rgba(0,0,0,.04);
 }
 
-.product-card:active{
-
-    transform:scale(.99);
-}
-
-.product-info{
-
+.product-copy{
     display:flex;
-
     flex-direction:column;
 }
 
-.product-info h3{
-
-    font-size:14px;
-
+.product-name{
+    font-size:13px;
     font-weight:800;
-
-    line-height:1.3;
-
-    margin-bottom:6px;
+    line-height:1.35;
 }
 
-.product-description{
-
+.product-desc{
+    font-size:10px;
     color:#777;
-
-    font-size:10.5px;
-
-    line-height:1.55;
-
+    line-height:1.5;
+    margin-top:5px;
     flex:1;
 }
 
-.product-price{
 
+/* ======================================================
+   PRICES
+====================================================== */
+
+.price-area{
+    margin-top:9px;
+}
+
+.old-price{
+    color:#aaa;
+
+    font-size:9px;
+
+    text-decoration:line-through;
+}
+
+.discount-price{
     font-size:15px;
 
     font-weight:800;
 
-    margin-top:10px;
+    color:var(--red);
 
-    color:
+    margin-top:1px;
+}
 
-        var(--red);
+.saving{
+    display:inline-block;
+
+    margin-top:4px;
+
+    font-size:8px;
+
+    font-weight:800;
+
+    color:var(--green);
+
+    background:#eaf8ef;
+
+    padding:
+        3px
+        6px;
+
+    border-radius:20px;
 }
 
 
-/* =========================================================
-   ÜRÜN GÖRSEL
-========================================================= */
+/* ======================================================
+   PRODUCT IMAGE
+====================================================== */
 
-.product-image-box{
-
+.product-image-area{
     position:relative;
 
-    height:112px;
+    width:115px;
+    height:115px;
 }
 
 .product-image{
-
-    width:112px;
-    height:112px;
+    width:115px;
+    height:115px;
 
     border-radius:16px;
 
     object-fit:cover;
 
-    display:block;
-
     background:#eee;
 }
 
+.product-discount-badge{
+    position:absolute;
 
-/* =========================================================
-   + / - KONTROL
-========================================================= */
+    left:6px;
+    top:6px;
 
-add-area,
-.qty-control{
-    user-select:none;
+    background:var(--red);
+
+    color:white;
+
+    font-size:7px;
+
+    font-weight:800;
+
+    border-radius:20px;
+
+    padding:
+        4px
+        6px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,.16);
 }
 
-.add-button{
 
+/* ======================================================
+   ADD BUTTON
+====================================================== */
+
+.add-button{
     position:absolute;
 
     right:6px;
     bottom:6px;
 
-    width:39px;
-    height:39px;
+    width:38px;
+    height:38px;
 
-    border:none;
+    border:0;
 
-    border-radius:13px;
+    border-radius:12px;
+
+    color:white;
+
+    font-size:23px;
 
     background:
-
         linear-gradient(
             135deg,
             var(--red),
             var(--orange)
         );
 
-    color:#fff;
-
-    font-size:24px;
-
-    line-height:1;
-
-    cursor:pointer;
-
     box-shadow:
-
-        0 8px 18px
-        rgba(210,40,25,.28);
+        0 8px 17px
+        rgba(215,25,32,.3);
 }
 
-.qty-control{
 
+/* ======================================================
+   QUANTITY
+====================================================== */
+
+.quantity-control{
     position:absolute;
 
     right:5px;
     bottom:5px;
 
-    background:#fff;
-
-    height:40px;
-
-    padding:
-
-        4px;
-
-    border-radius:13px;
+    height:39px;
 
     display:flex;
-
     align-items:center;
 
     gap:5px;
 
-    box-shadow:
+    padding:4px;
 
-        0 6px 18px
-        rgba(0,0,0,.22);
+    border-radius:12px;
+
+    background:white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.20);
 }
 
-.qty-control button{
+.quantity-control button{
+    border:0;
 
-    width:31px;
-    height:31px;
+    width:30px;
+    height:30px;
 
-    border:none;
+    border-radius:9px;
 
-    border-radius:10px;
+    background:#111;
 
-    background:
-
-        var(--black);
-
-    color:#fff;
-
-    font-weight:800;
+    color:white;
 
     font-size:17px;
 
-    cursor:pointer;
+    font-weight:800;
 }
 
-.qty-control span{
-
-    min-width:22px;
+.quantity-control span{
+    width:22px;
 
     text-align:center;
 
-    font-size:12px;
+    font-size:11px;
 
     font-weight:800;
 }
 
 
-/* =========================================================
-   SABİT SEPET
-========================================================= */
+/* ======================================================
+   CART BAR
+====================================================== */
 
 .cart-bar{
-
     position:fixed;
 
     left:12px;
     right:12px;
 
-    bottom:
+    bottom:12px;
 
-        calc(
-            12px +
-            env(safe-area-inset-bottom)
-        );
-
-    max-width:730px;
+    max-width:750px;
 
     margin:auto;
 
+    z-index:80;
+
     background:#111;
 
-    color:#fff;
+    color:white;
 
     border-radius:18px;
 
     padding:
-
         11px
         12px
         11px
-        16px;
+        15px;
 
     display:none;
 
@@ -1005,231 +853,184 @@ add-area,
 
     justify-content:space-between;
 
-    z-index:70;
-
     box-shadow:
-
-        0 18px 40px
-        rgba(0,0,0,.28);
+        0 17px 38px
+        rgba(0,0,0,.30);
 }
 
 .cart-bar.show{
-
     display:flex;
 }
 
-.cart-left b{
-
+.cart-summary strong{
     display:block;
 
-    font-size:13px;
+    font-size:12px;
 }
 
-.cart-left span{
-
+.cart-summary small{
     display:block;
 
-    color:#aaa;
+    font-size:9px;
 
-    font-size:10px;
+    color:#aaa;
 
     margin-top:2px;
 }
 
 .cart-button{
+    border:0;
 
-    border:none;
+    color:white;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    padding:
+        11px
+        14px;
+
+    border-radius:12px;
 
     background:
-
         linear-gradient(
             135deg,
             var(--red),
             var(--orange)
         );
-
-    color:#fff;
-
-    padding:
-
-        11px
-        15px;
-
-    border-radius:13px;
-
-    font-weight:800;
-
-    font-size:11px;
-
-    cursor:pointer;
 }
 
 
-/* =========================================================
-   MODAL
-========================================================= */
+/* ======================================================
+   SHEET
+====================================================== */
 
 .overlay{
-
     position:fixed;
 
     inset:0;
 
-    background:
+    z-index:90;
 
-        rgba(0,0,0,.56);
+    background:rgba(0,0,0,.57);
 
     backdrop-filter:blur(5px);
 
-    z-index:90;
-
     opacity:0;
-
     pointer-events:none;
 
     transition:.2s;
 }
 
 .overlay.show{
-
     opacity:1;
-
     pointer-events:auto;
 }
 
 .sheet{
-
     position:fixed;
 
     left:0;
     right:0;
-
     bottom:0;
 
-    max-height:91vh;
+    max-height:92vh;
 
     overflow:auto;
 
-    background:#fff;
-
     z-index:100;
 
-    border-radius:
+    background:white;
 
-        27px
-        27px
+    border-radius:
+        26px
+        26px
         0
         0;
 
     padding:
-
         18px
         16px
-        calc(
-            24px +
-            env(safe-area-inset-bottom)
-        );
+        26px;
 
-    transform:
+    transform:translateY(110%);
 
-        translateY(110%);
-
-    transition:
-
-        transform .26s ease;
+    transition:transform .25s ease;
 }
 
 .sheet.show{
-
-    transform:
-
-        translateY(0);
+    transform:translateY(0);
 }
 
 .sheet-header{
-
     display:flex;
-
-    justify-content:space-between;
 
     align-items:center;
 
-    margin-bottom:10px;
+    justify-content:space-between;
+
+    margin-bottom:8px;
 }
 
 .sheet-header h2{
+    font-family:'Archivo Black',sans-serif;
 
-    font-family:'Bebas Neue';
-
-    font-size:28px;
-
-    letter-spacing:.5px;
+    font-size:19px;
 }
 
 .close-button{
-
-    border:none;
-
     width:38px;
     height:38px;
 
+    border:0;
+
     border-radius:50%;
 
-    background:#f1efed;
-
-    color:#111;
+    background:#f1efec;
 
     font-size:20px;
-
-    cursor:pointer;
 }
 
 
-/* =========================================================
-   SEPET SATIRI
-========================================================= */
+/* ======================================================
+   CART ITEM
+====================================================== */
 
 .cart-item{
-
     display:flex;
 
-    gap:11px;
+    gap:10px;
 
     padding:
-
-        12px 0;
+        11px
+        0;
 
     border-bottom:
-
-        1px solid
-        #eee;
+        1px solid #eee;
 }
 
 .cart-thumb{
+    width:65px;
+    height:65px;
 
-    width:66px;
-    height:66px;
-
-    border-radius:13px;
+    border-radius:12px;
 
     object-fit:cover;
 }
 
-.cart-item-info{
-
+.cart-item-copy{
     flex:1;
 }
 
-.cart-item-info strong{
-
+.cart-item-copy strong{
     display:block;
 
-    font-size:12px;
+    font-size:11px;
 }
 
 .cart-item-price{
-
-    font-size:12px;
+    font-size:11px;
 
     font-weight:800;
 
@@ -1238,8 +1039,7 @@ add-area,
     margin-top:4px;
 }
 
-.cart-item-actions{
-
+.cart-actions{
     display:flex;
 
     align-items:center;
@@ -1249,306 +1049,322 @@ add-area,
     margin-top:7px;
 }
 
-.cart-item-actions button{
+.cart-actions button{
+    border:0;
 
     width:27px;
     height:27px;
-
-    border:none;
 
     border-radius:8px;
 
     background:#111;
 
-    color:#fff;
-
-    cursor:pointer;
+    color:white;
 }
 
-.cart-item-actions span{
-
-    width:25px;
+.cart-actions span{
+    width:24px;
 
     text-align:center;
 
-    font-size:11px;
+    font-size:10px;
 
     font-weight:800;
 }
 
 
-/* =========================================================
-   TOPLAM
-========================================================= */
+/* ======================================================
+   PRICE SUMMARY
+====================================================== */
 
-.total-row{
+.summary-box{
+    background:#f8f5f2;
 
+    border-radius:16px;
+
+    padding:13px;
+
+    margin-top:15px;
+}
+
+.summary-line{
     display:flex;
 
     justify-content:space-between;
 
-    font-size:18px;
+    margin-bottom:8px;
+
+    color:#666;
+
+    font-size:10px;
+}
+
+.summary-line.discount{
+    color:var(--green);
 
     font-weight:800;
+}
 
-    padding:
+.summary-line.total{
+    padding-top:10px;
 
-        17px 0;
+    border-top:
+        1px solid #ddd;
+
+    margin-bottom:0;
+
+    color:#111;
+
+    font-size:16px;
+
+    font-weight:800;
 }
 
 
-/* =========================================================
-   BUTON
-========================================================= */
+/* ======================================================
+   SAVING BOX
+====================================================== */
 
-.primary-button{
-
-    width:100%;
-
-    border:none;
-
-    color:#fff;
+.saving-box{
+    margin-top:10px;
 
     background:
+        linear-gradient(
+            135deg,
+            #e9f8ef,
+            #f5fff8
+        );
 
+    border:
+        1px solid #d7f0df;
+
+    color:#116c3c;
+
+    border-radius:14px;
+
+    padding:10px 12px;
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
+
+/* ======================================================
+   PRIMARY
+====================================================== */
+
+.primary{
+    width:100%;
+
+    border:0;
+
+    margin-top:14px;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    color:white;
+
+    background:
         linear-gradient(
             135deg,
             var(--red),
             var(--orange)
         );
 
-    padding:
-
-        15px;
-
-    border-radius:15px;
-
     font-weight:800;
 
-    cursor:pointer;
+    font-size:12px;
 
     box-shadow:
-
-        0 10px 24px
-        rgba(220,40,20,.22);
+        0 9px 22px
+        rgba(215,25,32,.22);
 }
 
 
-/* =========================================================
+/* ======================================================
    FORM
-========================================================= */
+====================================================== */
 
-.form-group{
-
-    margin-bottom:12px;
+.field{
+    margin-bottom:11px;
 }
 
-.form-group label{
-
+.field label{
     display:block;
 
-    font-size:10px;
+    font-size:9px;
 
-    font-weight:700;
+    font-weight:800;
 
     color:#666;
 
     margin:
-
-        0 0 6px
+        0
+        0
+        5px
         2px;
 }
 
-.form-group input,
-.form-group textarea{
-
+.field input,
+.field textarea{
     width:100%;
 
     border:
+        1px solid #e6e1dc;
 
-        1px solid
-        #e5e1dd;
+    outline:0;
 
     background:#faf9f7;
 
-    padding:
-
-        13px 14px;
-
     border-radius:13px;
 
-    outline:none;
+    padding:
+        13px;
 
-    font-size:12px;
+    font-size:11px;
 }
 
-.form-group textarea{
-
-    min-height:80px;
-
+.field textarea{
+    min-height:75px;
     resize:none;
 }
 
-.payment-option{
+.remember{
+    display:flex;
+
+    gap:8px;
+
+    align-items:flex-start;
+
+    font-size:9.5px;
+
+    color:#666;
+
+    line-height:1.5;
+
+    margin:
+        6px
+        0
+        15px;
+}
+
+.payment{
+    border:
+        1px solid #e5e1dd;
+
+    border-radius:13px;
+
+    padding:12px;
 
     display:flex;
 
     align-items:center;
 
-    gap:10px;
+    gap:9px;
 
-    padding:
+    font-size:11px;
 
-        12px;
-
-    border:
-
-        1px solid
-        #e5e1dd;
-
-    border-radius:13px;
-
-    margin-bottom:8px;
-
-    font-size:12px;
-
-    cursor:pointer;
-}
-
-.remember-box{
-
-    display:flex;
-
-    align-items:flex-start;
-
-    gap:8px;
-
-    color:#666;
-
-    font-size:10px;
-
-    line-height:1.5;
-
-    margin:
-
-        8px 0
-        15px;
+    margin-bottom:7px;
 }
 
 
-/* =========================================================
-   BAŞARILI SİPARİŞ
-========================================================= */
+/* ======================================================
+   SUCCESS
+====================================================== */
 
 .success{
-
     text-align:center;
 
     padding:
-
         30px
-        10px;
+        5px;
 }
 
 .success-icon{
+    width:74px;
+    height:74px;
 
-    width:76px;
-    height:76px;
+    margin:
+        0 auto
+        15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     border-radius:50%;
 
     background:
-
         linear-gradient(
             135deg,
-            #e9221c,
-            #ff7100
+            var(--red),
+            var(--orange)
         );
 
-    color:#fff;
+    color:white;
 
-    display:grid;
-
-    place-items:center;
-
-    margin:
-
-        0 auto
-        17px;
-
-    font-size:34px;
-
-    box-shadow:
-
-        0 12px 25px
-        rgba(220,40,20,.25);
+    font-size:32px;
 }
 
 .success h2{
+    font-family:'Archivo Black',sans-serif;
 
-    font-family:'Bebas Neue';
-
-    font-size:30px;
-
-    letter-spacing:.5px;
+    font-size:20px;
 }
 
 .success p{
+    font-size:10px;
+
+    line-height:1.6;
 
     color:#777;
 
-    font-size:11px;
-
-    line-height:1.65;
-
     margin:
-
-        8px 0
-        20px;
+        8px
+        0
+        15px;
 }
 
 
-/* =========================================================
-   ALT BİLGİ
-========================================================= */
+/* ======================================================
+   FOOTER
+====================================================== */
 
 .footer{
-
     text-align:center;
 
-    color:#999;
-
-    font-size:9px;
-
     padding:
+        28px
+        15px;
 
-        25px 15px;
+    color:#aaa;
+
+    font-size:8px;
 }
 
 
-/* =========================================================
+/* ======================================================
    DESKTOP
-========================================================= */
+====================================================== */
 
 @media(min-width:650px){
 
-    .products{
-
+    .product-grid{
         grid-template-columns:
-
             1fr
             1fr;
     }
 
     .sheet{
-
         width:650px;
 
         left:50%;
         right:auto;
 
         transform:
-
             translate(
                 -50%,
                 110%
@@ -1556,14 +1372,13 @@ add-area,
     }
 
     .sheet.show{
-
         transform:
-
             translate(
                 -50%,
                 0
             );
     }
+
 }
 
 </style>
@@ -1573,30 +1388,18 @@ add-area,
 <body>
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header class="header">
 
 <div class="header-inner">
 
-<div class="restaurant-top">
+<div class="restaurant-head">
 
 <div class="logo-box">
-
-<!--
-LOGO DOSYASINI GITHUB'A
-logo.png
-OLARAK YÜKLE
--->
 
 <img
     src="logo.png"
     alt="Antochya Döner"
-    onerror="
-        this.src='https://i.pinimg.com/736x/44/31/77/443177a08fc305094f7b4bd4f55e7e1a.jpg'
-    "
+    onerror="this.style.display='none'; this.parentElement.innerHTML='<strong style=&quot;color:#d71920;font-size:24px&quot;>AD</strong>';"
 >
 
 </div>
@@ -1604,26 +1407,27 @@ OLARAK YÜKLE
 
 <div class="restaurant-info">
 
-<h1>
-Antochya Döner
-</h1>
+<div class="restaurant-name">
+ANTOCHYA DÖNER
+</div>
 
-<p>
-Antakya usulü döner • Online sipariş
-</p>
+<div class="restaurant-sub">
+Antakya usulü döner • Doğrudan paket sipariş
+</div>
 
-<div class="rating-row">
 
-<span class="mini-badge">
-★ 4.2
+<div class="restaurant-tags">
+
+<span class="tag">
+🛵 Paket Servis
 </span>
 
-<span class="mini-badge">
-500+ değerlendirme
+<span class="tag">
+⚡ Hızlı Sipariş
 </span>
 
-<span class="mini-badge">
-Paket Servis
+<span class="tag">
+💳 Kapıda Ödeme
 </span>
 
 </div>
@@ -1633,30 +1437,29 @@ Paket Servis
 </div>
 
 
-<div class="delivery-card">
 
-<div class="delivery-left">
+<div class="discount-banner">
 
-<div class="delivery-icon">
-🛵
+<div class="discount-circle">
+%20
 </div>
 
-<div>
+
+<div class="discount-copy">
 
 <strong>
-Kapına kadar sıcak teslimat
+DOĞRUDAN SİPARİŞE ÖZEL %20 İNDİRİM
 </strong>
 
 <small>
-Siparişini doğrudan restorana ver
+Siparişini bu sayfadan ver, sepet tutarının %20'si otomatik düşsün.
 </small>
 
 </div>
 
-</div>
 
-<div class="free-text">
-ÜCRETSİZ TESLİMAT
+<div class="delivery-pill">
+TESLİMAT ÜCRETSİZ
 </div>
 
 </div>
@@ -1667,37 +1470,34 @@ Siparişini doğrudan restorana ver
 
 
 
-<!-- =====================================================
-     KAMPANYA SLIDER
-===================================================== -->
+<section class="slider-wrapper">
 
-<section class="slider-section">
-
-<div class="slider" id="slider">
+<div
+    class="slider"
+    id="slider"
+>
 
 
 <div
     class="slide active"
     style="
     background-image:
-    url(
-    'https://images.deliveryhero.io/image/fd-tr/LH/nyba-listing.jpg'
-    );
+    url('https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=85');
     "
 >
 
 <div class="slide-content">
 
-<span>
-ANTOCHYA FIRSATI
+<span class="slide-badge">
+QR'A ÖZEL
 </span>
 
 <h2>
-Lezzet Kapına Geliyor
+%20 İNDİRİM SENİN
 </h2>
 
 <p>
-Favori dürümünü seç, siparişini saniyeler içinde tamamla.
+Aracı platform yok. Siparişini doğrudan ver, avantajlı fiyatla ye.
 </p>
 
 </div>
@@ -1710,24 +1510,22 @@ Favori dürümünü seç, siparişini saniyeler içinde tamamla.
     class="slide"
     style="
     background-image:
-    url(
-    'https://images.deliveryhero.io/image/fd-tr/Products/67448907.jpg'
-    );
+    url('https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=1200&q=85');
     "
 >
 
 <div class="slide-content">
 
-<span>
-ÇOK SATAN
+<span class="slide-badge">
+ANTOCHYA LEZZETİ
 </span>
 
 <h2>
-Antakya Usulü Tavuk Dürüm
+ANTAKYA USULÜ DÜRÜM
 </h2>
 
 <p>
-Özel sos, turşu, patates ve sarımsaklı mayonez.
+Özel sos, turşu ve dönerin güçlü birlikteliği.
 </p>
 
 </div>
@@ -1740,24 +1538,22 @@ Antakya Usulü Tavuk Dürüm
     class="slide"
     style="
     background-image:
-    url(
-    'https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261181.jpg'
-    );
+    url('https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=85');
     "
 >
 
 <div class="slide-content">
 
-<span>
-ET DÖNER
+<span class="slide-badge">
+PAKET SERVİS
 </span>
 
 <h2>
-Doyuran Et Dönerler
+SICAK. HIZLI. DOĞRUDAN.
 </h2>
 
 <p>
-Antochya lezzetini evinde yaşa.
+Siparişin doğrudan restorana ulaşır.
 </p>
 
 </div>
@@ -1770,24 +1566,22 @@ Antochya lezzetini evinde yaşa.
     class="slide"
     style="
     background-image:
-    url(
-    'https://images.deliveryhero.io/image/fd-tr/Products/74147801.jpg'
-    );
+    url('https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85');
     "
 >
 
 <div class="slide-content">
 
-<span>
+<span class="slide-badge">
 BUGÜN NE YESEN?
 </span>
 
 <h2>
-Tavuk Baba Seni Bekliyor
+FAVORİNİ SEÇ
 </h2>
 
 <p>
-Büyük porsiyon, güçlü lezzet.
+Menüden seç, sepete ekle, adresini yaz ve siparişi tamamla.
 </p>
 
 </div>
@@ -1799,22 +1593,22 @@ Büyük porsiyon, güçlü lezzet.
 <div class="slider-dots">
 
 <button
-    class="dot active"
+    class="slider-dot active"
     onclick="goSlide(0)"
 ></button>
 
 <button
-    class="dot"
+    class="slider-dot"
     onclick="goSlide(1)"
 ></button>
 
 <button
-    class="dot"
+    class="slider-dot"
     onclick="goSlide(2)"
 ></button>
 
 <button
-    class="dot"
+    class="slider-dot"
     onclick="goSlide(3)"
 ></button>
 
@@ -1826,27 +1620,20 @@ Büyük porsiyon, güçlü lezzet.
 
 
 
-<!-- =====================================================
-     ANA İÇERİK
-===================================================== -->
-
 <main class="container">
 
-
-<!-- ARAMA -->
 
 <div class="search-area">
 
 <div class="search-box">
 
-<span>
+<div class="search-icon">
 ⌕
-</span>
+</div>
 
 <input
     id="searchInput"
-    type="text"
-    placeholder="Menüde ara..."
+    placeholder="Ne yemek istersin?"
 >
 
 </div>
@@ -1854,8 +1641,6 @@ Büyük porsiyon, güçlü lezzet.
 </div>
 
 
-
-<!-- KATEGORİLER -->
 
 <div
     class="categories"
@@ -1864,20 +1649,19 @@ Büyük porsiyon, güçlü lezzet.
 
 
 
-<!-- MENÜ -->
-
 <div
-    id="menuContainer"
+    id="menu"
 ></div>
+
 
 
 <div class="footer">
 
-Bu sayfa Antochya Döner için hazırlanmış demo sipariş altyapısıdır.
+ANTOCHYA DÖNER ONLINE SİPARİŞ
 
 <br>
 
-XLine Reklam & Yazılım
+Altyapı • XLine Reklam & Yazılım
 
 </div>
 
@@ -1886,24 +1670,20 @@ XLine Reklam & Yazılım
 
 
 
-<!-- =====================================================
-     SABİT SEPET
-===================================================== -->
-
 <div
     class="cart-bar"
     id="cartBar"
 >
 
-<div class="cart-left">
+<div class="cart-summary">
 
-<b id="cartCount">
+<strong id="cartCount">
 0 ürün
-</b>
+</strong>
 
-<span id="cartTotal">
+<small id="cartPrice">
 0 TL
-</span>
+</small>
 
 </div>
 
@@ -1913,17 +1693,13 @@ XLine Reklam & Yazılım
     onclick="openCart()"
 >
 
-Sepeti Gör →
+SEPETİ GÖR →
 
 </button>
 
 </div>
 
 
-
-<!-- =====================================================
-     MODAL ALTYAPI
-===================================================== -->
 
 <div
     class="overlay"
@@ -1931,934 +1707,967 @@ Sepeti Gör →
     onclick="closeSheet()"
 ></div>
 
-<div
+
+<section
     class="sheet"
     id="sheet"
-></div>
+></section>
 
 
 
 <script>
 
-/* =========================================================
+/* ======================================================
+   AYARLAR
+====================================================== */
+
+const DISCOUNT_RATE = 0.20;
+
+
+/* ======================================================
    ÜRÜNLER
-========================================================= */
+====================================================== */
 
 const products = [
 
 {
-id:1,
-category:"Et Dönerler",
-name:"Pilav Üstü Et",
-price:420,
-description:"Pirinç pilavı ve et döner.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/Products/80038511.jpg"
+    id:1,
+    category:"Et Dönerler",
+    name:"Pilav Üstü Et",
+    price:420,
+    description:"Pirinç pilavı ile servis edilen et döner.",
+    image:"https://images.unsplash.com/photo-1633321702518-7feccafb94d5?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:2,
-category:"Et Dönerler",
-name:"İskender Et",
-price:420,
-description:"Tek kişilik İskender et döner.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/Products/80038509.jpg"
+    id:2,
+    category:"Et Dönerler",
+    name:"İskender Et",
+    price:420,
+    description:"Et döner, pide, özel sos ve yoğurt.",
+    image:"https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:3,
-category:"Et Dönerler",
-name:"Double Et Döner Dürüm",
-price:300,
-description:"Et döner, yeşillik, patates kızartması ve turşu.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261181.jpg"
+    id:3,
+    category:"Et Dönerler",
+    name:"Double Et Döner Dürüm",
+    price:300,
+    description:"Et döner, yeşillik, patates kızartması ve turşu.",
+    image:"https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:4,
-category:"Et Dönerler",
-name:"Boru Et Döner Dürüm",
-price:270,
-description:"Et döner, yeşillik, patates kızartması ve turşu.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261311.jpg"
+    id:4,
+    category:"Et Dönerler",
+    name:"Boru Et Döner Dürüm",
+    price:270,
+    description:"Et döner, yeşillik, patates ve turşu.",
+    image:"https://images.unsplash.com/photo-1561651823-34feb02250e4?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:5,
-category:"Et Dönerler",
-name:"Mega Et Döner Dürüm",
-price:300,
-description:"Et döner, yeşillik, patates kızartması ve turşu.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261285.jpg"
+    id:5,
+    category:"Et Dönerler",
+    name:"Mega Et Döner Dürüm",
+    price:300,
+    description:"Bol et döner, patates, turşu ve özel sos.",
+    image:"https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:6,
-category:"Et Dönerler",
-name:"Et Döner (1 Kişilik)",
-price:390,
-description:"Garnitür ile servis edilir.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261288.jpg"
+    id:6,
+    category:"Et Dönerler",
+    name:"Et Döner",
+    price:390,
+    description:"Tek kişilik porsiyon et döner.",
+    image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:7,
-category:"Et Dönerler",
-name:"Et Döner Dürüm",
-price:250,
-description:"Et döner, yeşillik, patates kızartması ve turşu.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261318.jpg"
+    id:7,
+    category:"Et Dönerler",
+    name:"Et Döner Dürüm",
+    price:250,
+    description:"Et döner, yeşillik, patates ve turşu.",
+    image:"https://images.unsplash.com/photo-1642783944285-b33b18ef6c85?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:8,
-category:"Et Dönerler",
-name:"Baba Et Döner Dürüm",
-price:330,
-description:"Et döner, yeşillik, patates kızartması ve turşu.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/Products/67350440.jpg"
+    id:8,
+    category:"Et Dönerler",
+    name:"Baba Et Döner Dürüm",
+    price:330,
+    description:"Bol porsiyon et döner ve özel garnitür.",
+    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
 },
 
 
+
 {
-id:9,
-category:"Tavuk Dönerler",
-name:"İskender Tavuk",
-price:360,
-description:"Tek kişilik İskender tavuk.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/Products/80038508.jpg"
+    id:9,
+    category:"Tavuk Dönerler",
+    name:"İskender Tavuk",
+    price:360,
+    description:"Tavuk döner, pide, özel sos ve yoğurt.",
+    image:"https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:10,
-category:"Tavuk Dönerler",
-name:"Pilav Üstü Tavuk",
-price:320,
-description:"Pirinç pilavı ve tavuk döner.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/Products/80038507.jpg"
+    id:10,
+    category:"Tavuk Dönerler",
+    name:"Pilav Üstü Tavuk",
+    price:320,
+    description:"Pirinç pilavı üzerinde tavuk döner.",
+    image:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:11,
-category:"Tavuk Dönerler",
-name:"Tavuk Döner (1 Kişilik)",
-price:300,
-description:"Garnitür ile servis edilir.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261118.jpg"
+    id:11,
+    category:"Tavuk Dönerler",
+    name:"Tavuk Döner",
+    price:300,
+    description:"Tek kişilik porsiyon tavuk döner.",
+    image:"https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:12,
-category:"Tavuk Dönerler",
-name:"Psikopat Acılı Tavuk Döner Dürüm",
-price:210,
-description:"Yeşillik, patates kızartması ve turşu.",
-image:"https://images.deliveryhero.io/image/fd-tr/products/60261150.jpg"
+    id:12,
+    category:"Tavuk Dönerler",
+    name:"Psikopat Acılı Tavuk Dürüm",
+    price:210,
+    description:"Acılı özel sos, tavuk döner, patates ve turşu.",
+    image:"https://images.unsplash.com/photo-1530469912745-a215c6b256ea?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:13,
-category:"Tavuk Dönerler",
-name:"Tavuk Dürüm",
-price:200,
-description:"100 gr tavuk, özel sos, patates, turşu ve sarımsaklı mayonez.",
-image:"https://images.deliveryhero.io/image/fd-tr/Products/67448907.jpg"
+    id:13,
+    category:"Tavuk Dönerler",
+    name:"Tavuk Dürüm",
+    price:200,
+    description:"Tavuk, özel sos, patates, turşu ve sarımsaklı mayonez.",
+    image:"https://images.unsplash.com/photo-1662116765994-1e4200c43589?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:14,
-category:"Tavuk Dönerler",
-name:"Tavuk Boru Dürüm",
-price:220,
-description:"Patates, turşu, Antakya özel sosu ve sarımsaklı mayonez.",
-image:"https://images.deliveryhero.io/image/fd-tr/Products/67448936.jpg"
+    id:14,
+    category:"Tavuk Dönerler",
+    name:"Tavuk Boru Dürüm",
+    price:220,
+    description:"Tavuk, patates, turşu ve Antakya özel sosu.",
+    image:"https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:15,
-category:"Tavuk Dönerler",
-name:"Mega Tavuk Döner Dürüm",
-price:240,
-description:"Patates, turşu, özel sos ve sarımsaklı mayonez.",
-image:"https://images.deliveryhero.io/image/fd-tr/Products/67449614.jpg"
+    id:15,
+    category:"Tavuk Dönerler",
+    name:"Mega Tavuk Döner Dürüm",
+    price:240,
+    description:"Bol tavuk, patates, turşu ve özel sos.",
+    image:"https://images.unsplash.com/photo-1604467715878-83e57e8bc129?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:16,
-category:"Tavuk Dönerler",
-name:"Duble Tavuk Döner Dürüm",
-price:240,
-description:"Patates, turşu, özel sos ve sarımsaklı mayonez.",
-image:"https://images.deliveryhero.io/image/fd-tr/Products/67452025.jpg"
+    id:16,
+    category:"Tavuk Dönerler",
+    name:"Duble Tavuk Döner Dürüm",
+    price:240,
+    description:"Duble tavuk, özel sos, patates ve turşu.",
+    image:"https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:17,
-category:"Tavuk Dönerler",
-name:"Tavuk Baba",
-price:270,
-description:"Patates, turşu, Antakya özel sos ve sarımsaklı mayonez.",
-image:"https://images.deliveryhero.io/image/fd-tr/Products/74147801.jpg"
+    id:17,
+    category:"Tavuk Dönerler",
+    name:"Tavuk Baba",
+    price:270,
+    description:"Büyük porsiyon tavuk, patates, turşu ve özel sos.",
+    image:"https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=500&q=80"
 },
 
 
+
 {
-id:18,
-category:"Yan Ürünler",
-name:"Vejetaryen Dürüm",
-price:160,
-description:"Marul, turşu, patates kızartması, sos ve mayonez.",
-image:"https://images.deliveryhero.io/image/fd-tr/Products/74147801.jpg"
+    id:18,
+    category:"Yan Ürünler",
+    name:"Vejetaryen Dürüm",
+    price:160,
+    description:"Marul, turşu, patates kızartması, sos ve mayonez.",
+    image:"https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:19,
-category:"Yan Ürünler",
-name:"Patates Kızartması",
-price:140,
-description:"Çıtır patates kızartması.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261159.jpg"
+    id:19,
+    category:"Yan Ürünler",
+    name:"Patates Kızartması",
+    price:140,
+    description:"Çıtır patates kızartması.",
+    image:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:20,
-category:"Yan Ürünler",
-name:"Mayonez",
-price:25,
-description:"Adet olarak servis edilir.",
-image:"https://images.deliveryhero.io/image/fd-tr/Products/77595283.jpg"
+    id:20,
+    category:"Yan Ürünler",
+    name:"Mayonez",
+    price:25,
+    description:"Tek porsiyon mayonez.",
+    image:"https://images.unsplash.com/photo-1472476443507-c7a5948772fc?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:21,
-category:"Yan Ürünler",
-name:"Ketçap",
-price:25,
-description:"Adet olarak servis edilir.",
-image:"https://images.deliveryhero.io/image/fd-tr/Products/77595287.jpg"
+    id:21,
+    category:"Yan Ürünler",
+    name:"Ketçap",
+    price:25,
+    description:"Tek porsiyon ketçap.",
+    image:"https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=500&q=80"
 },
 
 
+
 {
-id:22,
-category:"İçecekler",
-name:"Pepsi (33 cl.)",
-price:80,
-description:"Soğuk kutu içecek.",
-image:"https://images.deliveryhero.io/image/fd-tr/Products/60260721.jpg"
+    id:22,
+    category:"İçecekler",
+    name:"Pepsi 33 cl",
+    price:80,
+    description:"Soğuk kutu içecek.",
+    image:"https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:23,
-category:"İçecekler",
-name:"Yedigün (33 cl.)",
-price:80,
-description:"Soğuk kutu içecek.",
-image:"https://images.deliveryhero.io/image/fd-tr/products/60260729.jpg"
+    id:23,
+    category:"İçecekler",
+    name:"Yedigün 33 cl",
+    price:80,
+    description:"Soğuk kutu içecek.",
+    image:"https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:24,
-category:"İçecekler",
-name:"7UP (33 cl.)",
-price:80,
-description:"Soğuk kutu içecek.",
-image:"https://images.deliveryhero.io/image/fd-tr/products/60260735.jpg"
+    id:24,
+    category:"İçecekler",
+    name:"7UP 33 cl",
+    price:80,
+    description:"Soğuk kutu içecek.",
+    image:"https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:25,
-category:"İçecekler",
-name:"Şalgam Suyu (30 cl.)",
-price:70,
-description:"Soğuk servis edilir.",
-image:"https://images.deliveryhero.io/image/fd-tr/products/60260709.jpg"
+    id:25,
+    category:"İçecekler",
+    name:"Şalgam Suyu 30 cl",
+    price:70,
+    description:"Soğuk şalgam suyu.",
+    image:"https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:26,
-category:"İçecekler",
-name:"Ayran (29 cl.)",
-price:50,
-description:"Soğuk ayran.",
-image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60260776.jpg"
+    id:26,
+    category:"İçecekler",
+    name:"Ayran",
+    price:50,
+    description:"Soğuk ayran.",
+    image:"https://images.unsplash.com/photo-1627662055794-a8fbd8c7f641?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:27,
-category:"İçecekler",
-name:"Su (50 cl.)",
-price:30,
-description:"Pet şişe su.",
-image:"https://images.deliveryhero.io/image/fd-tr/products/60260739.jpg"
+    id:27,
+    category:"İçecekler",
+    name:"Su 50 cl",
+    price:30,
+    description:"Pet şişe su.",
+    image:"https://images.unsplash.com/photo-1564419320461-6870880221ad?auto=format&fit=crop&w=500&q=80"
 },
 
 {
-id:28,
-category:"İçecekler",
-name:"Pepsi (1 L.)",
-price:130,
-description:"1 litre Pepsi.",
-image:"https://images.deliveryhero.io/image/fd-tr/products/60260724.jpg"
-},
-
-
-{
-id:29,
-category:"Poşet",
-name:"Poşet",
-price:1,
-description:"Plastik poşet.",
-image:"https://images.deliveryhero.io/image/fd-tr/Products/60261623.jpg"
+    id:28,
+    category:"İçecekler",
+    name:"Pepsi 1 L",
+    price:130,
+    description:"1 litre Pepsi.",
+    image:"https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=500&q=80"
 }
 
 ];
 
 
-/* =========================================================
-   GLOBAL
-========================================================= */
+/* ======================================================
+   STATE
+====================================================== */
 
 let activeCategory = "Tümü";
 
 let cart =
-JSON.parse(
-    localStorage.getItem("antochya_cart")
-    || "{}"
-);
+    JSON.parse(
+        localStorage.getItem("antochya_cart") || "{}"
+    );
 
 
-/* =========================================================
-   PARA
-========================================================= */
+/* ======================================================
+   UTILITIES
+====================================================== */
 
 function money(value){
 
-return new Intl.NumberFormat(
-    "tr-TR"
-).format(value)
-+ " TL";
+    return new Intl.NumberFormat(
+        "tr-TR"
+    ).format(
+        Math.round(value)
+    ) + " TL";
 
 }
 
 
-/* =========================================================
-   KATEGORİLER
-========================================================= */
+function discountedPrice(price){
 
-const categoryList = [
+    return price * (1 - DISCOUNT_RATE);
 
-"Tümü",
+}
 
-...new Set(
-    products.map(
-        product =>
-        product.category
-    )
-)
 
-];
+/* ======================================================
+   CATEGORY
+====================================================== */
+
+function getCategories(){
+
+    return [
+        "Tümü",
+        ...new Set(
+            products.map(
+                product => product.category
+            )
+        )
+    ];
+
+}
 
 
 function renderCategories(){
 
-const element =
-document.getElementById(
-    "categories"
-);
+    const container =
+        document.getElementById("categories");
 
-element.innerHTML =
+    const categories =
+        getCategories();
 
-categoryList.map(
+    container.innerHTML =
+        categories.map(
+            category => {
 
-category => `
+                return `
+                <button
+                    class="category ${
+                        category === activeCategory
+                        ? "active"
+                        : ""
+                    }"
+                    onclick="selectCategory('${category}')"
+                >
+                    ${category}
+                </button>
+                `;
 
-<button
+            }
+        ).join("");
 
-class="
-category-button
-${category === activeCategory ? "active" : ""}
-"
+}
 
-onclick="
-setCategory(
-'${category}'
-)
-"
 
->
+function selectCategory(category){
 
-${category}
+    activeCategory =
+        category;
 
-</button>
+    renderCategories();
 
-`
+    renderProducts();
 
-).join("");
+}
+
+
+/* ======================================================
+   PRODUCTS
+====================================================== */
+
+function renderProducts(){
+
+    const searchValue =
+        document
+        .getElementById("searchInput")
+        .value
+        .trim()
+        .toLocaleLowerCase("tr");
+
+
+    const filteredProducts =
+        products.filter(
+            product => {
+
+                const categoryMatch =
+                    activeCategory === "Tümü"
+                    ||
+                    product.category === activeCategory;
+
+
+                const searchableText =
+                    (
+                        product.name
+                        +
+                        " "
+                        +
+                        product.description
+                    )
+                    .toLocaleLowerCase("tr");
+
+
+                const searchMatch =
+                    searchableText.includes(
+                        searchValue
+                    );
+
+
+                return (
+                    categoryMatch
+                    &&
+                    searchMatch
+                );
+
+            }
+        );
+
+
+    const categories =
+        [
+            ...new Set(
+                filteredProducts.map(
+                    product => product.category
+                )
+            )
+        ];
+
+
+    const menu =
+        document.getElementById("menu");
+
+
+    if(
+        filteredProducts.length === 0
+    ){
+
+        menu.innerHTML = `
+            <div style="
+                padding:45px 20px;
+                text-align:center;
+                color:#888;
+                font-size:12px;
+            ">
+                Ürün bulunamadı.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    menu.innerHTML =
+        categories.map(
+            category => {
+
+                const categoryProducts =
+                    filteredProducts.filter(
+                        product =>
+                        product.category === category
+                    );
+
+
+                return `
+                <section class="menu-section">
+
+                    <div class="section-heading">
+
+                        <h2>
+                            ${category}
+                        </h2>
+
+                        <span>
+                            ${categoryProducts.length} ürün
+                        </span>
+
+                    </div>
+
+
+                    <div class="product-grid">
+
+                        ${
+                            categoryProducts.map(
+                                renderProductCard
+                            ).join("")
+                        }
+
+                    </div>
+
+                </section>
+                `;
+
+            }
+        ).join("");
+
+
+    updateAllQuantityControls();
 
 }
 
 
 
-function setCategory(category){
+function renderProductCard(product){
 
-activeCategory =
-category;
-
-renderCategories();
-
-renderMenu();
-
-}
+    const newPrice =
+        discountedPrice(
+            product.price
+        );
 
 
-/* =========================================================
-   MENÜ
-========================================================= */
-
-function renderMenu(){
-
-const search =
-document
-.getElementById(
-    "searchInput"
-)
-.value
-.toLocaleLowerCase(
-    "tr"
-);
-
-const filtered =
-
-products.filter(product => {
-
-const categoryMatch =
-
-activeCategory === "Tümü"
-
-||
-
-product.category ===
-activeCategory;
+    const saved =
+        product.price
+        -
+        newPrice;
 
 
-const searchMatch =
+    return `
 
-(
-product.name
-+
-" "
-+
-product.description
-)
-.toLocaleLowerCase(
-    "tr"
-)
-.includes(search);
+    <article class="product-card">
 
+        <div class="product-copy">
 
-return
+            <div class="product-name">
+                ${product.name}
+            </div>
 
-categoryMatch
-&&
-searchMatch;
-
-});
+            <div class="product-desc">
+                ${product.description}
+            </div>
 
 
-const groups =
+            <div class="price-area">
 
-[
-...new Set(
-filtered.map(
-    product =>
-    product.category
-)
-)
-];
+                <div class="old-price">
+                    ${money(product.price)}
+                </div>
 
+                <div class="discount-price">
+                    ${money(newPrice)}
+                </div>
 
-const container =
+                <div class="saving">
+                    ${money(saved)} avantaj
+                </div>
 
-document.getElementById(
-    "menuContainer"
-);
+            </div>
 
-
-container.innerHTML =
-
-groups.map(category => {
-
-const categoryProducts =
-
-filtered.filter(
-product =>
-product.category ===
-category
-);
+        </div>
 
 
-return `
+        <div class="product-image-area">
 
-<section
-class="menu-section"
->
+            <img
+                class="product-image"
+                src="${product.image}"
+                alt="${product.name}"
 
-<div
-class="section-title"
->
+                onerror="
+                    this.onerror=null;
+                    this.src='https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=500&q=80';
+                "
+            >
 
-<h2>
-${category}
-</h2>
-
-<span>
-${categoryProducts.length}
-ürün
-</span>
-
-</div>
+            <div class="product-discount-badge">
+                %20 İNDİRİMLİ
+            </div>
 
 
-<div
-class="products"
->
+            <div
+                id="qty-${product.id}"
+            ></div>
 
-${
+        </div>
 
-categoryProducts
+    </article>
 
-.map(
-
-product =>
-productHTML(product)
-
-)
-
-.join("")
-
-}
-
-</div>
-
-</section>
-
-`;
-
-}).join("");
-
-
-updateProductControls();
+    `;
 
 }
 
 
+/* ======================================================
+   QUANTITY
+====================================================== */
 
-/* =========================================================
-   ÜRÜN HTML
-========================================================= */
+function updateAllQuantityControls(){
 
-function productHTML(product){
+    products.forEach(
+        product => {
 
-return `
+            const container =
+                document.getElementById(
+                    `qty-${product.id}`
+                );
 
-<article
-class="product-card"
->
 
-<div
-class="product-info"
->
+            if(
+                !container
+            ){
 
-<h3>
-${product.name}
-</h3>
+                return;
 
-<div
-class="product-description"
->
-${product.description}
-</div>
+            }
 
-<div
-class="product-price"
->
-${money(product.price)}
-</div>
 
-</div>
+            const quantity =
+                Number(
+                    cart[product.id] || 0
+                );
 
 
-<div
-class="product-image-box"
->
+            if(
+                quantity === 0
+            ){
 
-<img
+                container.innerHTML = `
 
-class="product-image"
+                <button
+                    class="add-button"
+                    onclick="
+                        changeQuantity(
+                            ${product.id},
+                            1
+                        )
+                    "
+                >
+                    +
+                </button>
 
-src="
-${product.image}
-"
+                `;
 
-alt="
-${product.name}
-"
+            }
 
-loading="lazy"
+            else{
 
-onerror="
-this.src=
-'https://images.unsplash.com/photo-1561651823-34feb02250e4?auto=format&fit=crop&w=400&q=80'
-"
+                container.innerHTML = `
 
->
+                <div class="quantity-control">
 
+                    <button
+                        onclick="
+                            changeQuantity(
+                                ${product.id},
+                                -1
+                            )
+                        "
+                    >
+                        −
+                    </button>
 
-<div
-id="
-control-${product.id}
-"
->
 
-</div>
+                    <span>
+                        ${quantity}
+                    </span>
 
-</div>
 
-</article>
+                    <button
+                        onclick="
+                            changeQuantity(
+                                ${product.id},
+                                1
+                            )
+                        "
+                    >
+                        +
+                    </button>
 
-`;
+                </div>
 
-}
+                `;
 
+            }
 
-/* =========================================================
-   ÜRÜN + / -
-========================================================= */
-
-function updateProductControls(){
-
-products.forEach(
-
-product => {
-
-const holder =
-
-document.getElementById(
-`control-${product.id}`
-);
-
-if(!holder)
-return;
-
-
-const qty =
-cart[product.id]
-|| 0;
-
-
-if(qty === 0){
-
-holder.innerHTML = `
-
-<button
-
-class="add-button"
-
-onclick="
-changeQuantity(
-${product.id},
-1
-)
-"
-
->
-
-+
-
-</button>
-
-`;
-
-}
-
-else{
-
-holder.innerHTML = `
-
-<div
-class="qty-control"
->
-
-<button
-
-onclick="
-changeQuantity(
-${product.id},
--1
-)
-"
-
->
-
-−
-
-</button>
-
-<span>
-${qty}
-</span>
-
-<button
-
-onclick="
-changeQuantity(
-${product.id},
-1
-)
-"
-
->
-
-+
-
-</button>
-
-</div>
-
-`;
-
-}
-
-}
-
-);
+        }
+    );
 
 }
 
 
 
 function changeQuantity(
-
-productId,
-amount
-
+    productId,
+    amount
 ){
 
-cart[productId] =
-
-(cart[productId] || 0)
-
-+
-
-amount;
+    const current =
+        Number(
+            cart[productId] || 0
+        );
 
 
-if(
-cart[productId]
-<= 0
-){
+    const next =
+        current
+        +
+        amount;
 
-delete cart[productId];
+
+    if(
+        next <= 0
+    ){
+
+        delete cart[productId];
+
+    }
+
+    else{
+
+        cart[productId] =
+            next;
+
+    }
+
+
+    saveCart();
+
+    updateAllQuantityControls();
 
 }
 
 
-saveCart();
-
-updateProductControls();
-
-}
-
-
-/* =========================================================
-   SEPET
-========================================================= */
+/* ======================================================
+   CART DATA
+====================================================== */
 
 function getCartItems(){
 
-return
-
-Object
-.entries(cart)
-
-.map(
-
-([id, quantity]) => {
-
-const product =
-
-products.find(
-
-item =>
-item.id ===
-Number(id)
-
-);
-
-return{
-
-...product,
-
-quantity
-
-};
-
-}
-
-);
-
-}
+    const result = [];
 
 
+    Object.entries(
+        cart
+    ).forEach(
+        ([id,quantity]) => {
 
-function getTotal(){
+            const product =
+                products.find(
+                    item =>
+                    item.id === Number(id)
+                );
 
-return
 
-getCartItems()
+            if(
+                product
+            ){
 
-.reduce(
+                result.push({
 
-(total,item) =>
+                    ...product,
 
-total
-+
-(
-item.price
-*
-item.quantity
-),
+                    quantity:
+                        Number(quantity)
 
-0
+                });
 
-);
+            }
+
+        }
+    );
+
+
+    return result;
 
 }
 
 
+
+function getOriginalTotal(){
+
+    return getCartItems()
+        .reduce(
+            (
+                total,
+                item
+            ) => {
+
+                return (
+                    total
+                    +
+                    (
+                        item.price
+                        *
+                        item.quantity
+                    )
+                );
+
+            },
+            0
+        );
+
+}
+
+
+
+function getDiscountAmount(){
+
+    return (
+        getOriginalTotal()
+        *
+        DISCOUNT_RATE
+    );
+
+}
+
+
+
+function getFinalTotal(){
+
+    return (
+        getOriginalTotal()
+        -
+        getDiscountAmount()
+    );
+
+}
+
+
+/* ======================================================
+   SAVE CART
+====================================================== */
 
 function saveCart(){
 
-localStorage.setItem(
+    localStorage.setItem(
 
-"antochya_cart",
+        "antochya_cart",
 
-JSON.stringify(cart)
+        JSON.stringify(
+            cart
+        )
 
-);
+    );
 
-updateCartBar();
+
+    updateCartBar();
 
 }
 
 
-
-/* =========================================================
-   ALT SEPET BAR
-========================================================= */
+/* ======================================================
+   CART BAR
+====================================================== */
 
 function updateCartBar(){
 
-const items =
-getCartItems();
+    const items =
+        getCartItems();
 
 
-const count =
+    const count =
+        items.reduce(
+            (
+                total,
+                item
+            ) => {
 
-items.reduce(
+                return (
+                    total
+                    +
+                    item.quantity
+                );
 
-(total,item) =>
-
-total + item.quantity,
-
-0
-
-);
-
-
-const cartBar =
-
-document.getElementById(
-    "cartBar"
-);
+            },
+            0
+        );
 
 
-if(count > 0){
+    const bar =
+        document.getElementById(
+            "cartBar"
+        );
 
-cartBar.classList.add(
-    "show"
-);
+
+    if(
+        count > 0
+    ){
+
+        bar.classList.add(
+            "show"
+        );
+
+    }
+
+    else{
+
+        bar.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    document
+    .getElementById(
+        "cartCount"
+    )
+    .textContent =
+        count
+        +
+        " ürün";
+
+
+    document
+    .getElementById(
+        "cartPrice"
+    )
+    .textContent =
+        money(
+            getFinalTotal()
+        )
+        +
+        " • %20 indirimli";
 
 }
 
-else{
 
-cartBar.classList.remove(
-    "show"
-);
+/* ======================================================
+   SHEET
+====================================================== */
 
-}
+function showSheet(content){
 
-
-document
-.getElementById(
-    "cartCount"
-)
-.innerText =
-
-count
-+
-" ürün";
+    document
+    .getElementById(
+        "sheet"
+    )
+    .innerHTML =
+        content;
 
 
-document
-.getElementById(
-    "cartTotal"
-)
-.innerText =
-
-money(
-getTotal()
-);
-
-}
+    document
+    .getElementById(
+        "overlay"
+    )
+    .classList.add(
+        "show"
+    );
 
 
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-function showSheet(html){
-
-document
-.getElementById(
-    "sheet"
-)
-.innerHTML =
-html;
+    document
+    .getElementById(
+        "sheet"
+    )
+    .classList.add(
+        "show"
+    );
 
 
-document
-.getElementById(
-    "overlay"
-)
-.classList.add(
-    "show"
-);
-
-
-document
-.getElementById(
-    "sheet"
-)
-.classList.add(
-    "show"
-);
-
-
-document.body.style.overflow =
-"hidden";
+    document.body.style.overflow =
+        "hidden";
 
 }
 
@@ -2866,818 +2675,774 @@ document.body.style.overflow =
 
 function closeSheet(){
 
-document
-.getElementById(
-    "overlay"
-)
-.classList.remove(
-    "show"
-);
+    document
+    .getElementById(
+        "overlay"
+    )
+    .classList.remove(
+        "show"
+    );
 
 
-document
-.getElementById(
-    "sheet"
-)
-.classList.remove(
-    "show"
-);
+    document
+    .getElementById(
+        "sheet"
+    )
+    .classList.remove(
+        "show"
+    );
 
 
-document.body.style.overflow =
-"";
+    document.body.style.overflow =
+        "";
 
 }
 
 
-
-/* =========================================================
-   SEPET EKRANI
-========================================================= */
+/* ======================================================
+   OPEN CART
+====================================================== */
 
 function openCart(){
 
-renderCart();
+    const items =
+        getCartItems();
 
-}
 
+    let rows = "";
 
 
-function renderCart(){
+    items.forEach(
+        item => {
 
-const items =
-getCartItems();
+            rows += `
 
+            <div class="cart-item">
 
-let itemHTML = "";
+                <img
+                    class="cart-thumb"
+                    src="${item.image}"
+                >
 
 
-items.forEach(item => {
+                <div class="cart-item-copy">
 
-itemHTML += `
+                    <strong>
+                        ${item.name}
+                    </strong>
 
-<div
-class="cart-item"
->
 
-<img
-class="cart-thumb"
-src="${item.image}"
->
+                    <div class="cart-item-price">
 
+                        ${
+                            money(
+                                discountedPrice(
+                                    item.price
+                                )
+                                *
+                                item.quantity
+                            )
+                        }
 
-<div
-class="cart-item-info"
->
+                    </div>
 
-<strong>
-${item.name}
-</strong>
 
-<div
-class="cart-item-price"
->
-${money(
-item.price
-*
-item.quantity
-)}
-</div>
+                    <div class="cart-actions">
 
+                        <button
+                            onclick="
+                                changeCartQuantity(
+                                    ${item.id},
+                                    -1
+                                )
+                            "
+                        >
+                            −
+                        </button>
 
-<div
-class="cart-item-actions"
->
+                        <span>
+                            ${item.quantity}
+                        </span>
 
-<button
+                        <button
+                            onclick="
+                                changeCartQuantity(
+                                    ${item.id},
+                                    1
+                                )
+                            "
+                        >
+                            +
+                        </button>
 
-onclick="
-changeCartQuantity(
-${item.id},
--1
-)
-"
+                    </div>
 
->
+                </div>
 
-−
+            </div>
 
-</button>
+            `;
 
-<span>
-${item.quantity}
-</span>
+        }
+    );
 
-<button
 
-onclick="
-changeCartQuantity(
-${item.id},
-1
-)
-"
+    showSheet(`
 
->
+        <div class="sheet-header">
 
-+
+            <h2>
+                Sepetim
+            </h2>
 
-</button>
+            <button
+                class="close-button"
+                onclick="closeSheet()"
+            >
+                ×
+            </button>
 
-</div>
+        </div>
 
-</div>
 
-</div>
+        ${rows}
 
-`;
 
-});
+        <div class="summary-box">
 
+            <div class="summary-line">
 
-showSheet(`
+                <span>
+                    Ürünler
+                </span>
 
-<div
-class="sheet-header"
->
+                <span>
+                    ${money(getOriginalTotal())}
+                </span>
 
-<h2>
-Sepetim
-</h2>
+            </div>
 
-<button
-class="close-button"
-onclick="closeSheet()"
->
-×
-</button>
 
-</div>
+            <div class="summary-line discount">
 
+                <span>
+                    QR sipariş indirimi (%20)
+                </span>
 
-${
+                <span>
+                    − ${money(getDiscountAmount())}
+                </span>
 
-itemHTML
+            </div>
 
-||
 
-"<p>Sepetiniz boş.</p>"
+            <div class="summary-line">
 
-}
+                <span>
+                    Teslimat
+                </span>
 
+                <span>
+                    Ücretsiz
+                </span>
 
-${
+            </div>
 
-items.length
 
-?
+            <div class="summary-line total">
 
-`
+                <span>
+                    TOPLAM
+                </span>
 
-<div
-class="total-row"
->
+                <span>
+                    ${money(getFinalTotal())}
+                </span>
 
-<span>
-Toplam
-</span>
+            </div>
 
-<span>
-${money(
-getTotal()
-)}
-</span>
+        </div>
 
-</div>
 
+        <div class="saving-box">
 
-<button
-class="primary-button"
-onclick="checkout()"
->
+            🎉 Bu siparişte
 
-Siparişe Devam Et
+            <strong>
+                ${money(getDiscountAmount())}
+            </strong>
 
-</button>
+            avantaj sağladın.
 
-`
+        </div>
 
-:
 
-""
+        <button
+            class="primary"
+            onclick="openCheckout()"
+        >
+            SİPARİŞE DEVAM ET
+        </button>
 
-}
-
-`);
+    `);
 
 }
 
 
 
 function changeCartQuantity(
-
-id,
-amount
-
+    productId,
+    amount
 ){
 
-changeQuantity(
-id,
-amount
-);
+    changeQuantity(
+        productId,
+        amount
+    );
 
-renderCart();
+
+    if(
+        getCartItems().length === 0
+    ){
+
+        closeSheet();
+
+        return;
+
+    }
+
+
+    openCart();
 
 }
 
 
+/* ======================================================
+   CHECKOUT
+====================================================== */
 
-/* =========================================================
-   TESLİMAT EKRANI
-========================================================= */
+function openCheckout(){
 
-function checkout(){
+    const savedCustomer =
+        JSON.parse(
 
-const customer =
+            localStorage.getItem(
+                "antochya_customer"
+            )
 
-JSON.parse(
+            ||
 
-localStorage.getItem(
-"antochya_customer"
-)
+            "null"
 
-||
+        );
 
-"null"
 
-);
+    showSheet(`
 
+        <div class="sheet-header">
 
-showSheet(`
+            <h2>
+                Teslimat Bilgileri
+            </h2>
 
-<div
-class="sheet-header"
->
+            <button
+                class="close-button"
+                onclick="closeSheet()"
+            >
+                ×
+            </button>
 
-<h2>
-Teslimat Bilgileri
-</h2>
+        </div>
 
-<button
-class="close-button"
-onclick="closeSheet()"
->
-×
-</button>
 
-</div>
+        <div class="saving-box">
 
+            Sepet indirimin uygulandı.
 
+            <strong>
+                ${money(getDiscountAmount())}
+            </strong>
 
-<div
-class="form-group"
->
+            cebinde kaldı.
 
-<label>
-AD SOYAD
-</label>
+        </div>
 
-<input
 
-id="customerName"
+        <div style="height:14px"></div>
 
-value="
-${customer?.name || ""}
-"
 
-placeholder="
-Adınız Soyadınız
-"
+        <div class="field">
 
->
+            <label>
+                AD SOYAD
+            </label>
 
-</div>
+            <input
+                id="customerName"
+                value="${savedCustomer?.name || ""}"
+                placeholder="Adınız Soyadınız"
+            >
 
+        </div>
 
 
-<div
-class="form-group"
->
+        <div class="field">
 
-<label>
-TELEFON
-</label>
+            <label>
+                TELEFON
+            </label>
 
-<input
+            <input
+                id="customerPhone"
+                type="tel"
+                inputmode="tel"
+                value="${savedCustomer?.phone || ""}"
+                placeholder="05xx xxx xx xx"
+            >
 
-id="customerPhone"
+        </div>
 
-type="tel"
 
-inputmode="tel"
+        <div class="field">
 
-value="
-${customer?.phone || ""}
-"
+            <label>
+                MAHALLE
+            </label>
 
-placeholder="
-05xx xxx xx xx
-"
+            <input
+                id="customerDistrict"
+                value="${savedCustomer?.district || ""}"
+                placeholder="Mahalle"
+            >
 
->
+        </div>
 
-</div>
 
+        <div class="field">
 
+            <label>
+                AÇIK ADRES
+            </label>
 
-<div
-class="form-group"
->
+            <textarea
+                id="customerAddress"
+                placeholder="Cadde, sokak, bina, daire..."
+            >${savedCustomer?.address || ""}</textarea>
 
-<label>
-MAHALLE
-</label>
+        </div>
 
-<input
 
-id="customerDistrict"
+        <div class="field">
 
-value="
-${customer?.district || ""}
-"
+            <label>
+                SİPARİŞ NOTU
+            </label>
 
-placeholder="
-Mahalle
-"
+            <textarea
+                id="customerNote"
+                placeholder="Acısız olsun, zile basmayın..."
+            >${savedCustomer?.note || ""}</textarea>
 
->
+        </div>
 
-</div>
 
+        <label class="remember">
 
+            <input
+                id="rememberCustomer"
+                type="checkbox"
+                ${savedCustomer ? "checked" : ""}
+            >
 
-<div
-class="form-group"
->
+            <span>
+                Bilgilerimi sonraki siparişlerimde hatırla.
+            </span>
 
-<label>
-AÇIK ADRES
-</label>
+        </label>
 
-<textarea
 
-id="customerAddress"
+        <div class="field">
 
-placeholder="
-Cadde, sokak, bina, daire...
-"
+            <label>
+                ÖDEME YÖNTEMİ
+            </label>
 
->${customer?.address || ""}</textarea>
 
-</div>
+            <label class="payment">
 
+                <input
+                    type="radio"
+                    name="payment"
+                    value="Kapıda Nakit"
+                    checked
+                >
 
+                💵 Kapıda Nakit
 
-<div
-class="form-group"
->
+            </label>
 
-<label>
-SİPARİŞ / ADRES NOTU
-</label>
 
-<textarea
+            <label class="payment">
 
-id="customerNote"
+                <input
+                    type="radio"
+                    name="payment"
+                    value="Kapıda Kart"
+                >
 
-placeholder="
-Örn. zile basmayın, acısız olsun...
-"
+                💳 Kapıda Kart
 
->${customer?.note || ""}</textarea>
+            </label>
 
-</div>
+        </div>
 
 
+        <div class="summary-box">
 
-<label
-class="remember-box"
->
+            <div class="summary-line">
 
-<input
-id="rememberCustomer"
-type="checkbox"
-${customer ? "checked" : ""}
->
+                <span>
+                    Sepet
+                </span>
 
-<span>
+                <span>
+                    ${money(getOriginalTotal())}
+                </span>
 
-Bilgilerimi sonraki siparişim için bu cihazda hatırla.
+            </div>
 
-</span>
 
-</label>
+            <div class="summary-line discount">
 
+                <span>
+                    %20 indirim
+                </span>
 
+                <span>
+                    − ${money(getDiscountAmount())}
+                </span>
 
-<div
-class="form-group"
->
+            </div>
 
-<label>
-ÖDEME YÖNTEMİ
-</label>
 
+            <div class="summary-line total">
 
-<label
-class="payment-option"
->
+                <span>
+                    ÖDENECEK
+                </span>
 
-<input
-type="radio"
-name="payment"
-value="Kapıda Nakit"
-checked
->
+                <span>
+                    ${money(getFinalTotal())}
+                </span>
 
-💵
+            </div>
 
-Kapıda Nakit
+        </div>
 
-</label>
 
+        <button
+            class="primary"
+            onclick="placeOrder()"
+        >
+            ${money(getFinalTotal())}
+            •
+            SİPARİŞİ VER
+        </button>
 
-<label
-class="payment-option"
->
-
-<input
-type="radio"
-name="payment"
-value="Kapıda Kart"
->
-
-💳
-
-Kapıda Kredi / Banka Kartı
-
-</label>
-
-</div>
-
-
-
-<div
-class="total-row"
->
-
-<span>
-Toplam
-</span>
-
-<span>
-${money(
-getTotal()
-)}
-</span>
-
-</div>
-
-
-
-<button
-class="primary-button"
-onclick="placeOrder()"
->
-
-Siparişi Ver
-
-</button>
-
-`);
+    `);
 
 }
 
 
-
-/* =========================================================
-   SİPARİŞ
-========================================================= */
+/* ======================================================
+   PLACE ORDER
+====================================================== */
 
 function placeOrder(){
 
-const name =
-
-document
-.getElementById(
-"customerName"
-)
-.value
-.trim();
-
-
-const phone =
-
-document
-.getElementById(
-"customerPhone"
-)
-.value
-.trim();
+    const name =
+        document
+        .getElementById(
+            "customerName"
+        )
+        .value
+        .trim();
 
 
-const district =
-
-document
-.getElementById(
-"customerDistrict"
-)
-.value
-.trim();
-
-
-const address =
-
-document
-.getElementById(
-"customerAddress"
-)
-.value
-.trim();
+    const phone =
+        document
+        .getElementById(
+            "customerPhone"
+        )
+        .value
+        .trim();
 
 
-const note =
-
-document
-.getElementById(
-"customerNote"
-)
-.value
-.trim();
-
+    const district =
+        document
+        .getElementById(
+            "customerDistrict"
+        )
+        .value
+        .trim();
 
 
-if(
-!name
-||
-!phone
-||
-!address
-){
+    const address =
+        document
+        .getElementById(
+            "customerAddress"
+        )
+        .value
+        .trim();
 
-alert(
 
-"Lütfen ad, telefon ve açık adres bilgilerini doldurun."
+    const note =
+        document
+        .getElementById(
+            "customerNote"
+        )
+        .value
+        .trim();
 
-);
 
-return;
+    if(
+        !name
+        ||
+        !phone
+        ||
+        !address
+    ){
+
+        alert(
+            "Lütfen ad, telefon ve açık adres bilgilerini doldurun."
+        );
+
+        return;
+
+    }
+
+
+    const customerData = {
+
+        name,
+        phone,
+        district,
+        address,
+        note
+
+    };
+
+
+    const remember =
+        document
+        .getElementById(
+            "rememberCustomer"
+        )
+        .checked;
+
+
+    if(
+        remember
+    ){
+
+        localStorage.setItem(
+
+            "antochya_customer",
+
+            JSON.stringify(
+                customerData
+            )
+
+        );
+
+    }
+
+    else{
+
+        localStorage.removeItem(
+            "antochya_customer"
+        );
+
+    }
+
+
+    const orderNumber =
+        Math.floor(
+            1000
+            +
+            Math.random()
+            *
+            9000
+        );
+
+
+    cart = {};
+
+    saveCart();
+
+    renderProducts();
+
+
+    showSheet(`
+
+        <div class="success">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <h2>
+                SİPARİŞİN ALINDI
+            </h2>
+
+
+            <p>
+
+                Sipariş numaran
+
+                <strong>
+                    #${orderNumber}
+                </strong>
+
+                <br><br>
+
+                Sipariş bilgilerin restorana iletilmek üzere hazırlandı.
+
+            </p>
+
+
+            <button
+                class="primary"
+                onclick="closeSheet()"
+            >
+                MENÜYE DÖN
+            </button>
+
+        </div>
+
+    `);
 
 }
 
 
-
-const customerData = {
-
-name,
-phone,
-district,
-address,
-note
-
-};
-
-
-
-const remember =
+/* ======================================================
+   SEARCH
+====================================================== */
 
 document
 .getElementById(
-"rememberCustomer"
-)
-.checked;
-
-
-
-if(remember){
-
-localStorage.setItem(
-
-"antochya_customer",
-
-JSON.stringify(
-customerData
-)
-
-);
-
-}
-
-else{
-
-localStorage.removeItem(
-"antochya_customer"
-);
-
-}
-
-
-
-const orderNumber =
-
-Math.floor(
-
-1000
-+
-Math.random()
-*
-9000
-
-);
-
-
-cart = {};
-
-saveCart();
-
-updateProductControls();
-
-
-
-showSheet(`
-
-<div
-class="success"
->
-
-<div
-class="success-icon"
->
-✓
-</div>
-
-
-<h2>
-Siparişiniz Alındı
-</h2>
-
-
-<p>
-
-Sipariş numaranız
-
-<strong>
-#${orderNumber}
-</strong>
-
-<br>
-
-Siparişiniz restorana iletilmek üzere oluşturuldu.
-
-</p>
-
-
-<button
-class="primary-button"
-onclick="closeSheet()"
->
-
-Menüye Dön
-
-</button>
-
-</div>
-
-`);
-
-}
-
-
-
-/* =========================================================
-   ARAMA
-========================================================= */
-
-document
-.getElementById(
-"searchInput"
+    "searchInput"
 )
 .addEventListener(
 
-"input",
+    "input",
 
-renderMenu
+    renderProducts
 
 );
 
 
-
-/* =========================================================
+/* ======================================================
    SLIDER
-========================================================= */
+====================================================== */
 
 let currentSlide =
-0;
+    0;
 
 
 const slides =
-
-document
-.querySelectorAll(
-".slide"
-);
+    document.querySelectorAll(
+        ".slide"
+    );
 
 
 const dots =
-
-document
-.querySelectorAll(
-".dot"
-);
-
+    document.querySelectorAll(
+        ".slider-dot"
+    );
 
 
 function goSlide(index){
 
-slides.forEach(
-slide =>
-slide.classList.remove(
-"active"
-)
-);
+    slides.forEach(
+        slide =>
+        slide.classList.remove(
+            "active"
+        )
+    );
 
 
-dots.forEach(
-dot =>
-dot.classList.remove(
-"active"
-)
-);
+    dots.forEach(
+        dot =>
+        dot.classList.remove(
+            "active"
+        )
+    );
 
 
-currentSlide =
-index;
+    currentSlide =
+        index;
 
 
-slides[
-currentSlide
-]
-.classList.add(
-"active"
-);
+    slides[
+        currentSlide
+    ]
+    .classList.add(
+        "active"
+    );
 
 
-dots[
-currentSlide
-]
-.classList.add(
-"active"
-);
+    dots[
+        currentSlide
+    ]
+    .classList.add(
+        "active"
+    );
 
 }
-
 
 
 setInterval(
 
-()=>{
+    function(){
 
-currentSlide++;
+        currentSlide++;
 
-if(
-currentSlide
->=
-slides.length
-){
+        if(
+            currentSlide
+            >=
+            slides.length
+        ){
 
-currentSlide =
-0;
+            currentSlide =
+                0;
 
-}
+        }
 
-goSlide(
-currentSlide
+
+        goSlide(
+            currentSlide
+        );
+
+    },
+
+    4200
+
 );
 
-},
 
-4500
-
-);
-
-
-
-/* =========================================================
-   BAŞLAT
-========================================================= */
+/* ======================================================
+   INIT
+====================================================== */
 
 renderCategories();
 
-renderMenu();
+renderProducts();
 
 updateCartBar();
 
 </script>
-
 
 </body>
 </html>
