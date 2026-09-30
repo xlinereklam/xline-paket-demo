@@ -3917,8 +3917,44 @@ async function placeOrder(){
         ================================================= */
 
         const orderNumber =
-            data.order_number;
+    data.order_number;
 
+
+/* =================================================
+   SİPARİŞ TAKİP BİLGİSİNİ KAYDET
+================================================= */
+
+const trackingToken =
+    data.tracking_token;
+
+
+if(
+    !trackingToken
+){
+
+    throw new Error(
+        "Sipariş takip anahtarı alınamadı."
+    );
+
+}
+
+
+localStorage.setItem(
+    "antochya_active_order",
+    JSON.stringify({
+        order_number:
+            orderNumber,
+
+        tracking_token:
+            trackingToken,
+
+        total_amount:
+            data.total_amount,
+
+        created_at:
+            new Date().toISOString()
+    })
+);
 
         /* =================================================
            SİPARİŞ BAŞARILI
@@ -3978,7 +4014,15 @@ async function placeOrder(){
 
                 </p>
 
-
+<button
+    class="primary"
+    id="trackOrderButton"
+    style="
+        margin-bottom:10px;
+    "
+>
+    SİPARİŞİMİ TAKİP ET
+</button>
                 <button
                     class="primary"
                     id="backToMenuButton"
@@ -3990,7 +4034,20 @@ async function placeOrder(){
 
         `);
 
+document
+.getElementById(
+    "trackOrderButton"
+)
+.addEventListener(
+    "click",
+    function(){
 
+        openOrderTracking(
+            trackingToken
+        );
+
+    }
+);
         document
         .getElementById(
             "backToMenuButton"
