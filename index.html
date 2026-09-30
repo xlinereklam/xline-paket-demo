@@ -14,253 +14,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-/* =========================================================
-   SOSYAL MEDYA / ALT BUTONLAR
-========================================================= */
 
-.restaurant-links{
-    margin:20px 14px 8px;
-
-    padding:16px;
-
-    border-radius:22px;
-
-    background:rgba(255,255,255,.93);
-
-    border:1px solid var(--line);
-
-    box-shadow:
-        0 8px 24px
-        rgba(0,0,0,.045);
-}
-
-.restaurant-links-title{
-    text-align:center;
-
-    font-family:'Archivo Black',sans-serif;
-
-    font-size:15px;
-
-    margin-bottom:13px;
-
-    color:#222;
-}
-
-.restaurant-links-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:8px;
-}
-
-.social-button{
-    min-height:70px;
-
-    border-radius:15px;
-
-    text-decoration:none;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:5px;
-
-    background:#fff;
-
-    border:
-        1px solid
-        #ece5dd;
-
-    color:#222;
-
-    font-size:10px;
-
-    font-weight:700;
-
-    text-align:center;
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease;
-}
-
-.social-button:active{
-    transform:scale(.97);
-}
-
-.social-icon{
-    font-size:21px;
-}
-
-
-/* GOOGLE */
-
-.google-button{
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #fff8ed
-        );
-
-    color:#1b1b1b;
-}
-
-
-/* INSTAGRAM */
-
-.instagram-button{
-    background:
-        linear-gradient(
-            145deg,
-            #fff,
-            #fff1f4
-        );
-
-    color:#c51f5d;
-}
-
-
-/* FACEBOOK */
-
-.facebook-button{
-    background:
-        linear-gradient(
-            145deg,
-            #fff,
-            #edf4ff
-        );
-
-    color:#1769d2;
-}
-
-
-/* =========================================================
-   XLINE FOOTER
-========================================================= */
-
-.xline-footer{
-    margin:
-        22px
-        14px
-        28px;
-
-    padding:
-        19px
-        16px;
-
-    border-radius:22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #141414,
-            #202020
-        );
-
-    color:#fff;
-
-    text-align:center;
-
-    box-shadow:
-        0 14px 32px
-        rgba(0,0,0,.15);
-}
-
-.xline-logo{
-    max-width:105px;
-
-    max-height:50px;
-
-    object-fit:contain;
-
-    margin:
-        0 auto
-        10px;
-}
-
-.xline-footer-text{
-    color:#bdbdbd;
-
-    font-size:9px;
-
-    line-height:1.6;
-
-    margin-bottom:12px;
-}
-
-.xline-footer-text strong{
-    display:block;
-
-    color:#fff;
-
-    font-size:11px;
-
-    margin-bottom:2px;
-}
-
-.xline-phone-button{
-    width:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
-
-    padding:12px 14px;
-
-    border-radius:13px;
-
-    text-decoration:none;
-
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--red),
-            var(--orange)
-        );
-
-    font-size:12px;
-
-    font-weight:800;
-
-    box-shadow:
-        0 8px 20px
-        rgba(220,40,20,.2);
-}
-
-.xline-mini{
-    margin-top:8px;
-
-    color:#777;
-
-    font-size:8px;
-}
-
-
-@media(max-width:380px){
-
-    .social-button{
-        font-size:9px;
-    }
-
-    .restaurant-links-grid{
-        gap:6px;
-    }
-
-}
 <style>
 
 /* =========================================================
@@ -1504,6 +1258,168 @@ img{
 
 }
 
+
+/* =========================================================
+   RESTORAN SOSYAL BAĞLANTILARI
+========================================================= */
+
+.restaurant-links{
+    margin:22px 14px 10px;
+    padding:18px;
+    border-radius:22px;
+    background:rgba(255,255,255,.94);
+    border:1px solid var(--line);
+    box-shadow:0 8px 24px rgba(0,0,0,.05);
+}
+
+.restaurant-links-title{
+    text-align:center;
+    font-family:'Archivo Black',sans-serif;
+    font-size:15px;
+    color:#222;
+    margin-bottom:13px;
+}
+
+.restaurant-links-subtitle{
+    text-align:center;
+    color:#777;
+    font-size:10px;
+    line-height:1.5;
+    margin:-5px 0 14px;
+}
+
+.restaurant-links-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.social-button{
+    min-height:76px;
+    border-radius:16px;
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    background:#fff;
+    border:1px solid #ece5dd;
+    color:#222;
+    font-size:10.5px;
+    font-weight:700;
+    text-align:center;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.social-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.07);
+    border-color:#ddd3c9;
+}
+
+.social-button:active{
+    transform:scale(.98);
+}
+
+.social-icon{
+    width:33px;
+    height:33px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    font-weight:800;
+}
+
+.google-button .social-icon{
+    background:#fff5df;
+    color:#d38d00;
+}
+
+.instagram-button .social-icon{
+    background:linear-gradient(135deg,#feda75,#d62976,#4f5bd5);
+    color:#fff;
+}
+
+.facebook-button .social-icon{
+    background:#1877f2;
+    color:#fff;
+}
+
+.xline-footer{
+    margin:16px 14px 30px;
+    padding:20px 16px 17px;
+    border-radius:22px;
+    background:
+        radial-gradient(circle at 90% 0%,rgba(255,106,0,.18),transparent 34%),
+        linear-gradient(145deg,#111,#202020);
+    color:#fff;
+    text-align:center;
+    box-shadow:0 14px 32px rgba(0,0,0,.16);
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.xline-logo{
+    max-width:120px;
+    max-height:52px;
+    object-fit:contain;
+    margin:0 auto 10px;
+}
+
+.xline-footer-title{
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:4px;
+}
+
+.xline-footer-text{
+    color:#bdbdbd;
+    font-size:9.5px;
+    line-height:1.6;
+    max-width:480px;
+    margin:0 auto 13px;
+}
+
+.xline-phone-button{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:12px 14px;
+    border-radius:13px;
+    text-decoration:none;
+    color:#fff;
+    background:linear-gradient(135deg,var(--red),var(--orange));
+    font-size:12px;
+    font-weight:800;
+    box-shadow:0 8px 20px rgba(220,40,20,.22);
+}
+
+.xline-mini{
+    margin-top:9px;
+    color:#777;
+    font-size:8px;
+    letter-spacing:.2px;
+}
+
+@media(max-width:380px){
+    .restaurant-links{
+        padding:14px 12px;
+    }
+
+    .restaurant-links-grid{
+        gap:6px;
+    }
+
+    .social-button{
+        min-height:70px;
+        font-size:9px;
+    }
+}
+
 </style>
 </head>
 
@@ -1759,143 +1675,87 @@ Menüden seç, sepete ekle ve siparişini tamamla.
 ></div>
 
 
-<!-- =====================================================
+<!-- =========================================================
      RESTORAN BAĞLANTILARI
-===================================================== -->
+========================================================= -->
 
 <section class="restaurant-links">
 
-<div class="restaurant-links-title">
-BİZİ TAKİP ET
-</div>
+    <div class="restaurant-links-title">
+        BİZİ TAKİP ET
+    </div>
 
+    <div class="restaurant-links-subtitle">
+        Deneyimini paylaş, sosyal medyada bizi takip et.
+    </div>
 
-<div class="restaurant-links-grid">
+    <div class="restaurant-links-grid">
 
+        <a
+            class="social-button google-button"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Google'da değerlendir"
+        >
+            <span class="social-icon">★</span>
+            <span>Google'da<br>Değerlendir</span>
+        </a>
 
-<!-- GOOGLE DEĞERLENDİRME -->
+        <a
+            class="social-button instagram-button"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+        >
+            <span class="social-icon">◎</span>
+            <span>Instagram</span>
+        </a>
 
-<a
-    class="social-button google-button"
-    href="#"
-    target="_blank"
-    rel="noopener"
-    id="googleReviewButton"
->
+        <a
+            class="social-button facebook-button"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+        >
+            <span class="social-icon">f</span>
+            <span>Facebook</span>
+        </a>
 
-<span class="social-icon">
-⭐
-</span>
-
-<span>
-Google'da<br>Değerlendir
-</span>
-
-</a>
-
-
-
-<!-- INSTAGRAM -->
-
-<a
-    class="social-button instagram-button"
-    href="#"
-    target="_blank"
-    rel="noopener"
-    id="instagramButton"
->
-
-<span class="social-icon">
-◎
-</span>
-
-<span>
-Instagram
-</span>
-
-</a>
-
-
-
-<!-- FACEBOOK -->
-
-<a
-    class="social-button facebook-button"
-    href="#"
-    target="_blank"
-    rel="noopener"
-    id="facebookButton"
->
-
-<span class="social-icon">
-f
-</span>
-
-<span>
-Facebook
-</span>
-
-</a>
-
-
-</div>
+    </div>
 
 </section>
 
-
-
-<!-- =====================================================
-     XLINE FOOTER
-===================================================== -->
-
 <section class="xline-footer">
 
+    <img
+        src="xlinelogo.png"
+        alt="XLine Reklam & Yazılım"
+        class="xline-logo"
+        onerror="this.style.display='none';"
+    >
 
-<img
-    src="xlinelogo.png"
-    alt="XLine Reklam & Yazılım"
-    class="xline-logo"
+    <div class="xline-footer-title">
+        XLine Reklam & Yazılım
+    </div>
 
-    onerror="
-        this.style.display='none';
-    "
->
+    <div class="xline-footer-text">
+        Bu online sipariş sistemi XLine Reklam & Yazılım tarafından hazırlanmıştır.
+        İşletmenize özel QR sipariş ve dijital çözümler için bizimle iletişime geçin.
+    </div>
 
+    <a
+        href="tel:05535964626"
+        class="xline-phone-button"
+    >
+        ☎ 0553 596 46 26
+    </a>
 
-<div class="xline-footer-text">
-
-<strong>
-XLine Reklam & Yazılım
-</strong>
-
-Bu online sipariş sistemi XLine Reklam & Yazılım tarafından hazırlanmıştır.
-
-<br>
-
-İşletmenize özel sipariş sistemi için bizimle iletişime geçin.
-
-</div>
-
-
-<a
-    href="tel:05535964626"
-    class="xline-phone-button"
->
-
-<span>
-☎
-</span>
-
-0553 596 46 26
-
-</a>
-
-
-<div class="xline-mini">
-
-QR Menü • Paket Sipariş • Yazılım • Dijital Çözümler
-
-</div>
+    <div class="xline-mini">
+        QR Menü • Paket Sipariş • Yazılım • Dijital Çözümler
+    </div>
 
 </section>
 
@@ -1952,50 +1812,9 @@ const DISCOUNT_RATE = 0.20;
 
 
 /* =========================================================
-   RESTORAN SOSYAL BAĞLANTILARI
-========================================================= */
-
-const RESTAURANT_LINKS = {
-
-    google:
-    "BURAYA_GOOGLE_DEGERLENDIRME_LINKI",
-
-    instagram:
-    "BURAYA_INSTAGRAM_LINKI",
-
-    facebook:
-    "BURAYA_FACEBOOK_LINKI"
-
-};
-/* =========================================================
    ÜRÜNLER
 ========================================================= */
-const products = [
 
-{
-id:1,
-category:"Et Dönerler",
-name:"Pilav Üstü Et",
-price:420,
-description:"Pirinç pilavı ile servis edilen et döner.",
-image:"https://images.unsplash.com/photo-1633321702518-7feccafb94d5?auto=format&fit=crop&w=500&q=80"
-},
-   /* =========================================================
-   RESTORAN SOSYAL BAĞLANTILARI
-========================================================= */
-
-const RESTAURANT_LINKS = {
-
-    google:
-    "BURAYA_GOOGLE_DEGERLENDIRME_LINKI",
-
-    instagram:
-    "BURAYA_INSTAGRAM_LINKI",
-
-    facebook:
-    "BURAYA_FACEBOOK_LINKI"
-
-};
 const products = [
 
 {
@@ -3935,34 +3754,6 @@ document
     "click",
     closeSheet
 );
-
-
-/* =========================================================
-   SOSYAL BUTONLAR
-========================================================= */
-
-document
-.getElementById(
-    "googleReviewButton"
-)
-.href =
-    RESTAURANT_LINKS.google;
-
-
-document
-.getElementById(
-    "instagramButton"
-)
-.href =
-    RESTAURANT_LINKS.instagram;
-
-
-document
-.getElementById(
-    "facebookButton"
-)
-.href =
-    RESTAURANT_LINKS.facebook;
 
 
 /* =========================================================
