@@ -1,1 +1,3683 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
 
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<meta name="theme-color" content="#d9251d">
+
+<title>Antochya Döner | Online Sipariş</title>
+
+<!-- FONTLAR -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+   TEMEL AYARLAR
+========================================================= */
+
+:root{
+
+    --red:#d9251d;
+    --red-dark:#a91612;
+    --orange:#ff6a00;
+    --orange-light:#ff8a1f;
+
+    --black:#111111;
+    --black-soft:#1c1c1c;
+
+    --white:#ffffff;
+    --offwhite:#f7f5f2;
+
+    --gray:#747474;
+    --gray-light:#ece8e3;
+
+    --shadow:
+        0 12px 35px rgba(0,0,0,.10);
+
+    --radius:22px;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+        #f7f5f2;
+
+    color:var(--black);
+
+    min-height:100vh;
+
+    padding-bottom:110px;
+}
+
+button,
+input,
+textarea{
+
+    font-family:'Poppins',sans-serif;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    background:
+
+        radial-gradient(
+            circle at top right,
+            rgba(255,106,0,.55),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #c41610,
+            #ed2b1f 58%,
+            #ff5b00
+        );
+
+    color:#fff;
+
+    padding:
+
+        18px
+        18px
+        28px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.header::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+    height:240px;
+
+    border:
+
+        40px solid
+        rgba(255,255,255,.04);
+
+    border-radius:50%;
+
+    right:-100px;
+    top:-120px;
+}
+
+.header-inner{
+
+    max-width:760px;
+
+    margin:auto;
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+/* =========================================================
+   RESTORAN ÜST BİLGİ
+========================================================= */
+
+.restaurant-top{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+.logo-box{
+
+    width:72px;
+    height:72px;
+
+    flex:none;
+
+    border-radius:20px;
+
+    background:#fff;
+
+    padding:7px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:
+
+        0 10px 30px
+        rgba(0,0,0,.22);
+}
+
+.logo-box img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    border-radius:14px;
+}
+
+.restaurant-info{
+
+    flex:1;
+}
+
+.restaurant-info h1{
+
+    font-family:'Bebas Neue',sans-serif;
+
+    font-size:33px;
+
+    font-weight:400;
+
+    letter-spacing:1px;
+
+    line-height:1;
+
+    margin-bottom:4px;
+}
+
+.restaurant-info p{
+
+    font-size:12px;
+
+    opacity:.9;
+}
+
+.rating-row{
+
+    display:flex;
+
+    gap:7px;
+
+    margin-top:7px;
+
+    flex-wrap:wrap;
+}
+
+.mini-badge{
+
+    font-size:10px;
+
+    font-weight:700;
+
+    padding:5px 8px;
+
+    border-radius:30px;
+
+    background:
+
+        rgba(255,255,255,.16);
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.16);
+
+    backdrop-filter:blur(10px);
+}
+
+
+/* =========================================================
+   TESLİMAT BİLGİ KUTUSU
+========================================================= */
+
+.delivery-card{
+
+    margin-top:20px;
+
+    background:
+
+        rgba(20,20,20,.92);
+
+    border-radius:18px;
+
+    padding:
+
+        14px 15px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:
+
+        0 13px 30px
+        rgba(0,0,0,.18);
+}
+
+.delivery-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+}
+
+.delivery-icon{
+
+    width:42px;
+    height:42px;
+
+    border-radius:13px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--orange),
+            var(--red)
+        );
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:21px;
+}
+
+.delivery-card strong{
+
+    display:block;
+
+    font-size:13px;
+}
+
+.delivery-card small{
+
+    display:block;
+
+    font-size:10px;
+
+    color:#d9d9d9;
+
+    margin-top:3px;
+}
+
+.free-text{
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:#fff;
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.25);
+
+    padding:7px 9px;
+
+    border-radius:30px;
+}
+
+
+/* =========================================================
+   SLIDER
+========================================================= */
+
+.slider-section{
+
+    max-width:760px;
+
+    margin:
+
+        -10px auto
+        0;
+
+    padding:
+
+        0 14px;
+
+    position:relative;
+
+    z-index:4;
+}
+
+.slider{
+
+    position:relative;
+
+    height:180px;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    background:#222;
+}
+
+.slide{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:0;
+
+    transition:
+
+        opacity .45s ease;
+
+    background-size:cover;
+
+    background-position:center;
+
+    display:flex;
+
+    align-items:flex-end;
+}
+
+.slide.active{
+
+    opacity:1;
+}
+
+.slide::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.82),
+            rgba(0,0,0,.05)
+        );
+}
+
+.slide-content{
+
+    position:relative;
+
+    z-index:2;
+
+    color:#fff;
+
+    padding:20px;
+
+    width:100%;
+}
+
+.slide-content span{
+
+    display:inline-block;
+
+    background:var(--red);
+
+    font-size:9px;
+
+    font-weight:800;
+
+    padding:
+
+        5px 8px;
+
+    border-radius:20px;
+
+    margin-bottom:6px;
+}
+
+.slide-content h2{
+
+    font-family:'Bebas Neue';
+
+    font-size:27px;
+
+    letter-spacing:.5px;
+
+    line-height:1.05;
+}
+
+.slide-content p{
+
+    font-size:10px;
+
+    margin-top:5px;
+
+    opacity:.92;
+}
+
+.slider-dots{
+
+    position:absolute;
+
+    bottom:12px;
+
+    right:16px;
+
+    z-index:4;
+
+    display:flex;
+
+    gap:5px;
+}
+
+.dot{
+
+    width:7px;
+    height:7px;
+
+    border-radius:20px;
+
+    border:none;
+
+    background:
+
+        rgba(255,255,255,.45);
+
+    transition:.2s;
+}
+
+.dot.active{
+
+    width:22px;
+
+    background:#fff;
+}
+
+
+/* =========================================================
+   ANA ALAN
+========================================================= */
+
+.container{
+
+    max-width:760px;
+
+    margin:auto;
+}
+
+
+/* =========================================================
+   ARAMA
+========================================================= */
+
+.search-area{
+
+    padding:
+
+        18px
+        14px
+        4px;
+}
+
+.search-box{
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    border-radius:16px;
+
+    padding:
+
+        0 15px;
+
+    border:
+
+        1px solid
+        #e9e4df;
+
+    box-shadow:
+
+        0 5px 18px
+        rgba(0,0,0,.04);
+}
+
+.search-box span{
+
+    font-size:18px;
+}
+
+.search-box input{
+
+    border:none;
+
+    width:100%;
+
+    outline:none;
+
+    padding:
+
+        14px 0;
+
+    font-size:13px;
+
+    background:transparent;
+}
+
+
+/* =========================================================
+   KATEGORİ
+========================================================= */
+
+.categories{
+
+    display:flex;
+
+    gap:8px;
+
+    overflow-x:auto;
+
+    padding:
+
+        11px
+        14px
+        12px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:20;
+
+    background:
+
+        rgba(247,245,242,.95);
+
+    backdrop-filter:
+
+        blur(12px);
+
+    border-bottom:
+
+        1px solid
+        rgba(0,0,0,.04);
+}
+
+.categories::-webkit-scrollbar{
+
+    display:none;
+}
+
+.category-button{
+
+    border:none;
+
+    background:#fff;
+
+    color:#4c4c4c;
+
+    white-space:nowrap;
+
+    padding:
+
+        9px
+        13px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    box-shadow:
+
+        0 4px 12px
+        rgba(0,0,0,.04);
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.category-button.active{
+
+    color:#fff;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--orange)
+        );
+
+    box-shadow:
+
+        0 7px 18px
+        rgba(220,40,25,.22);
+}
+
+
+/* =========================================================
+   MENÜ
+========================================================= */
+
+.menu-section{
+
+    padding:
+
+        12px 14px;
+}
+
+.section-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin:
+
+        8px
+        1px
+        12px;
+}
+
+.section-title h2{
+
+    font-family:'Bebas Neue';
+
+    font-size:27px;
+
+    font-weight:400;
+
+    letter-spacing:.7px;
+}
+
+.section-title span{
+
+    font-size:10px;
+
+    color:#999;
+}
+
+
+/* =========================================================
+   ÜRÜN
+========================================================= */
+
+.products{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:12px;
+}
+
+.product-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    border:
+
+        1px solid
+        #eee8e3;
+
+    padding:11px;
+
+    display:grid;
+
+    grid-template-columns:
+
+        1fr
+        112px;
+
+    gap:12px;
+
+    box-shadow:
+
+        0 6px 20px
+        rgba(0,0,0,.035);
+
+    transition:
+
+        transform .2s,
+        box-shadow .2s;
+}
+
+.product-card:active{
+
+    transform:scale(.99);
+}
+
+.product-info{
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+.product-info h3{
+
+    font-size:14px;
+
+    font-weight:800;
+
+    line-height:1.3;
+
+    margin-bottom:6px;
+}
+
+.product-description{
+
+    color:#777;
+
+    font-size:10.5px;
+
+    line-height:1.55;
+
+    flex:1;
+}
+
+.product-price{
+
+    font-size:15px;
+
+    font-weight:800;
+
+    margin-top:10px;
+
+    color:
+
+        var(--red);
+}
+
+
+/* =========================================================
+   ÜRÜN GÖRSEL
+========================================================= */
+
+.product-image-box{
+
+    position:relative;
+
+    height:112px;
+}
+
+.product-image{
+
+    width:112px;
+    height:112px;
+
+    border-radius:16px;
+
+    object-fit:cover;
+
+    display:block;
+
+    background:#eee;
+}
+
+
+/* =========================================================
+   + / - KONTROL
+========================================================= */
+
+add-area,
+.qty-control{
+    user-select:none;
+}
+
+.add-button{
+
+    position:absolute;
+
+    right:6px;
+    bottom:6px;
+
+    width:39px;
+    height:39px;
+
+    border:none;
+
+    border-radius:13px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--orange)
+        );
+
+    color:#fff;
+
+    font-size:24px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+    box-shadow:
+
+        0 8px 18px
+        rgba(210,40,25,.28);
+}
+
+.qty-control{
+
+    position:absolute;
+
+    right:5px;
+    bottom:5px;
+
+    background:#fff;
+
+    height:40px;
+
+    padding:
+
+        4px;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    box-shadow:
+
+        0 6px 18px
+        rgba(0,0,0,.22);
+}
+
+.qty-control button{
+
+    width:31px;
+    height:31px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:
+
+        var(--black);
+
+    color:#fff;
+
+    font-weight:800;
+
+    font-size:17px;
+
+    cursor:pointer;
+}
+
+.qty-control span{
+
+    min-width:22px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   SABİT SEPET
+========================================================= */
+
+.cart-bar{
+
+    position:fixed;
+
+    left:12px;
+    right:12px;
+
+    bottom:
+
+        calc(
+            12px +
+            env(safe-area-inset-bottom)
+        );
+
+    max-width:730px;
+
+    margin:auto;
+
+    background:#111;
+
+    color:#fff;
+
+    border-radius:18px;
+
+    padding:
+
+        11px
+        12px
+        11px
+        16px;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    z-index:70;
+
+    box-shadow:
+
+        0 18px 40px
+        rgba(0,0,0,.28);
+}
+
+.cart-bar.show{
+
+    display:flex;
+}
+
+.cart-left b{
+
+    display:block;
+
+    font-size:13px;
+}
+
+.cart-left span{
+
+    display:block;
+
+    color:#aaa;
+
+    font-size:10px;
+
+    margin-top:2px;
+}
+
+.cart-button{
+
+    border:none;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--orange)
+        );
+
+    color:#fff;
+
+    padding:
+
+        11px
+        15px;
+
+    border-radius:13px;
+
+    font-weight:800;
+
+    font-size:11px;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+        rgba(0,0,0,.56);
+
+    backdrop-filter:blur(5px);
+
+    z-index:90;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.2s;
+}
+
+.overlay.show{
+
+    opacity:1;
+
+    pointer-events:auto;
+}
+
+.sheet{
+
+    position:fixed;
+
+    left:0;
+    right:0;
+
+    bottom:0;
+
+    max-height:91vh;
+
+    overflow:auto;
+
+    background:#fff;
+
+    z-index:100;
+
+    border-radius:
+
+        27px
+        27px
+        0
+        0;
+
+    padding:
+
+        18px
+        16px
+        calc(
+            24px +
+            env(safe-area-inset-bottom)
+        );
+
+    transform:
+
+        translateY(110%);
+
+    transition:
+
+        transform .26s ease;
+}
+
+.sheet.show{
+
+    transform:
+
+        translateY(0);
+}
+
+.sheet-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:10px;
+}
+
+.sheet-header h2{
+
+    font-family:'Bebas Neue';
+
+    font-size:28px;
+
+    letter-spacing:.5px;
+}
+
+.close-button{
+
+    border:none;
+
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    background:#f1efed;
+
+    color:#111;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   SEPET SATIRI
+========================================================= */
+
+.cart-item{
+
+    display:flex;
+
+    gap:11px;
+
+    padding:
+
+        12px 0;
+
+    border-bottom:
+
+        1px solid
+        #eee;
+}
+
+.cart-thumb{
+
+    width:66px;
+    height:66px;
+
+    border-radius:13px;
+
+    object-fit:cover;
+}
+
+.cart-item-info{
+
+    flex:1;
+}
+
+.cart-item-info strong{
+
+    display:block;
+
+    font-size:12px;
+}
+
+.cart-item-price{
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:var(--red);
+
+    margin-top:4px;
+}
+
+.cart-item-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    margin-top:7px;
+}
+
+.cart-item-actions button{
+
+    width:27px;
+    height:27px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#111;
+
+    color:#fff;
+
+    cursor:pointer;
+}
+
+.cart-item-actions span{
+
+    width:25px;
+
+    text-align:center;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   TOPLAM
+========================================================= */
+
+.total-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    padding:
+
+        17px 0;
+}
+
+
+/* =========================================================
+   BUTON
+========================================================= */
+
+.primary-button{
+
+    width:100%;
+
+    border:none;
+
+    color:#fff;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--orange)
+        );
+
+    padding:
+
+        15px;
+
+    border-radius:15px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    box-shadow:
+
+        0 10px 24px
+        rgba(220,40,20,.22);
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group{
+
+    margin-bottom:12px;
+}
+
+.form-group label{
+
+    display:block;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    color:#666;
+
+    margin:
+
+        0 0 6px
+        2px;
+}
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+
+    border:
+
+        1px solid
+        #e5e1dd;
+
+    background:#faf9f7;
+
+    padding:
+
+        13px 14px;
+
+    border-radius:13px;
+
+    outline:none;
+
+    font-size:12px;
+}
+
+.form-group textarea{
+
+    min-height:80px;
+
+    resize:none;
+}
+
+.payment-option{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:
+
+        12px;
+
+    border:
+
+        1px solid
+        #e5e1dd;
+
+    border-radius:13px;
+
+    margin-bottom:8px;
+
+    font-size:12px;
+
+    cursor:pointer;
+}
+
+.remember-box{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:8px;
+
+    color:#666;
+
+    font-size:10px;
+
+    line-height:1.5;
+
+    margin:
+
+        8px 0
+        15px;
+}
+
+
+/* =========================================================
+   BAŞARILI SİPARİŞ
+========================================================= */
+
+.success{
+
+    text-align:center;
+
+    padding:
+
+        30px
+        10px;
+}
+
+.success-icon{
+
+    width:76px;
+    height:76px;
+
+    border-radius:50%;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #e9221c,
+            #ff7100
+        );
+
+    color:#fff;
+
+    display:grid;
+
+    place-items:center;
+
+    margin:
+
+        0 auto
+        17px;
+
+    font-size:34px;
+
+    box-shadow:
+
+        0 12px 25px
+        rgba(220,40,20,.25);
+}
+
+.success h2{
+
+    font-family:'Bebas Neue';
+
+    font-size:30px;
+
+    letter-spacing:.5px;
+}
+
+.success p{
+
+    color:#777;
+
+    font-size:11px;
+
+    line-height:1.65;
+
+    margin:
+
+        8px 0
+        20px;
+}
+
+
+/* =========================================================
+   ALT BİLGİ
+========================================================= */
+
+.footer{
+
+    text-align:center;
+
+    color:#999;
+
+    font-size:9px;
+
+    padding:
+
+        25px 15px;
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media(min-width:650px){
+
+    .products{
+
+        grid-template-columns:
+
+            1fr
+            1fr;
+    }
+
+    .sheet{
+
+        width:650px;
+
+        left:50%;
+        right:auto;
+
+        transform:
+
+            translate(
+                -50%,
+                110%
+            );
+    }
+
+    .sheet.show{
+
+        transform:
+
+            translate(
+                -50%,
+                0
+            );
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+<div class="header-inner">
+
+<div class="restaurant-top">
+
+<div class="logo-box">
+
+<!--
+LOGO DOSYASINI GITHUB'A
+logo.png
+OLARAK YÜKLE
+-->
+
+<img
+    src="logo.png"
+    alt="Antochya Döner"
+    onerror="
+        this.src='https://i.pinimg.com/736x/44/31/77/443177a08fc305094f7b4bd4f55e7e1a.jpg'
+    "
+>
+
+</div>
+
+
+<div class="restaurant-info">
+
+<h1>
+Antochya Döner
+</h1>
+
+<p>
+Antakya usulü döner • Online sipariş
+</p>
+
+<div class="rating-row">
+
+<span class="mini-badge">
+★ 4.2
+</span>
+
+<span class="mini-badge">
+500+ değerlendirme
+</span>
+
+<span class="mini-badge">
+Paket Servis
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="delivery-card">
+
+<div class="delivery-left">
+
+<div class="delivery-icon">
+🛵
+</div>
+
+<div>
+
+<strong>
+Kapına kadar sıcak teslimat
+</strong>
+
+<small>
+Siparişini doğrudan restorana ver
+</small>
+
+</div>
+
+</div>
+
+<div class="free-text">
+ÜCRETSİZ TESLİMAT
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<!-- =====================================================
+     KAMPANYA SLIDER
+===================================================== -->
+
+<section class="slider-section">
+
+<div class="slider" id="slider">
+
+
+<div
+    class="slide active"
+    style="
+    background-image:
+    url(
+    'https://images.deliveryhero.io/image/fd-tr/LH/nyba-listing.jpg'
+    );
+    "
+>
+
+<div class="slide-content">
+
+<span>
+ANTOCHYA FIRSATI
+</span>
+
+<h2>
+Lezzet Kapına Geliyor
+</h2>
+
+<p>
+Favori dürümünü seç, siparişini saniyeler içinde tamamla.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div
+    class="slide"
+    style="
+    background-image:
+    url(
+    'https://images.deliveryhero.io/image/fd-tr/Products/67448907.jpg'
+    );
+    "
+>
+
+<div class="slide-content">
+
+<span>
+ÇOK SATAN
+</span>
+
+<h2>
+Antakya Usulü Tavuk Dürüm
+</h2>
+
+<p>
+Özel sos, turşu, patates ve sarımsaklı mayonez.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div
+    class="slide"
+    style="
+    background-image:
+    url(
+    'https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261181.jpg'
+    );
+    "
+>
+
+<div class="slide-content">
+
+<span>
+ET DÖNER
+</span>
+
+<h2>
+Doyuran Et Dönerler
+</h2>
+
+<p>
+Antochya lezzetini evinde yaşa.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div
+    class="slide"
+    style="
+    background-image:
+    url(
+    'https://images.deliveryhero.io/image/fd-tr/Products/74147801.jpg'
+    );
+    "
+>
+
+<div class="slide-content">
+
+<span>
+BUGÜN NE YESEN?
+</span>
+
+<h2>
+Tavuk Baba Seni Bekliyor
+</h2>
+
+<p>
+Büyük porsiyon, güçlü lezzet.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="slider-dots">
+
+<button
+    class="dot active"
+    onclick="goSlide(0)"
+></button>
+
+<button
+    class="dot"
+    onclick="goSlide(1)"
+></button>
+
+<button
+    class="dot"
+    onclick="goSlide(2)"
+></button>
+
+<button
+    class="dot"
+    onclick="goSlide(3)"
+></button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ANA İÇERİK
+===================================================== -->
+
+<main class="container">
+
+
+<!-- ARAMA -->
+
+<div class="search-area">
+
+<div class="search-box">
+
+<span>
+⌕
+</span>
+
+<input
+    id="searchInput"
+    type="text"
+    placeholder="Menüde ara..."
+>
+
+</div>
+
+</div>
+
+
+
+<!-- KATEGORİLER -->
+
+<div
+    class="categories"
+    id="categories"
+></div>
+
+
+
+<!-- MENÜ -->
+
+<div
+    id="menuContainer"
+></div>
+
+
+<div class="footer">
+
+Bu sayfa Antochya Döner için hazırlanmış demo sipariş altyapısıdır.
+
+<br>
+
+XLine Reklam & Yazılım
+
+</div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     SABİT SEPET
+===================================================== -->
+
+<div
+    class="cart-bar"
+    id="cartBar"
+>
+
+<div class="cart-left">
+
+<b id="cartCount">
+0 ürün
+</b>
+
+<span id="cartTotal">
+0 TL
+</span>
+
+</div>
+
+
+<button
+    class="cart-button"
+    onclick="openCart()"
+>
+
+Sepeti Gör →
+
+</button>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL ALTYAPI
+===================================================== -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeSheet()"
+></div>
+
+<div
+    class="sheet"
+    id="sheet"
+></div>
+
+
+
+<script>
+
+/* =========================================================
+   ÜRÜNLER
+========================================================= */
+
+const products = [
+
+{
+id:1,
+category:"Et Dönerler",
+name:"Pilav Üstü Et",
+price:420,
+description:"Pirinç pilavı ve et döner.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/Products/80038511.jpg"
+},
+
+{
+id:2,
+category:"Et Dönerler",
+name:"İskender Et",
+price:420,
+description:"Tek kişilik İskender et döner.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/Products/80038509.jpg"
+},
+
+{
+id:3,
+category:"Et Dönerler",
+name:"Double Et Döner Dürüm",
+price:300,
+description:"Et döner, yeşillik, patates kızartması ve turşu.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261181.jpg"
+},
+
+{
+id:4,
+category:"Et Dönerler",
+name:"Boru Et Döner Dürüm",
+price:270,
+description:"Et döner, yeşillik, patates kızartması ve turşu.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261311.jpg"
+},
+
+{
+id:5,
+category:"Et Dönerler",
+name:"Mega Et Döner Dürüm",
+price:300,
+description:"Et döner, yeşillik, patates kızartması ve turşu.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261285.jpg"
+},
+
+{
+id:6,
+category:"Et Dönerler",
+name:"Et Döner (1 Kişilik)",
+price:390,
+description:"Garnitür ile servis edilir.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261288.jpg"
+},
+
+{
+id:7,
+category:"Et Dönerler",
+name:"Et Döner Dürüm",
+price:250,
+description:"Et döner, yeşillik, patates kızartması ve turşu.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261318.jpg"
+},
+
+{
+id:8,
+category:"Et Dönerler",
+name:"Baba Et Döner Dürüm",
+price:330,
+description:"Et döner, yeşillik, patates kızartması ve turşu.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/Products/67350440.jpg"
+},
+
+
+{
+id:9,
+category:"Tavuk Dönerler",
+name:"İskender Tavuk",
+price:360,
+description:"Tek kişilik İskender tavuk.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/Products/80038508.jpg"
+},
+
+{
+id:10,
+category:"Tavuk Dönerler",
+name:"Pilav Üstü Tavuk",
+price:320,
+description:"Pirinç pilavı ve tavuk döner.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/Products/80038507.jpg"
+},
+
+{
+id:11,
+category:"Tavuk Dönerler",
+name:"Tavuk Döner (1 Kişilik)",
+price:300,
+description:"Garnitür ile servis edilir.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261118.jpg"
+},
+
+{
+id:12,
+category:"Tavuk Dönerler",
+name:"Psikopat Acılı Tavuk Döner Dürüm",
+price:210,
+description:"Yeşillik, patates kızartması ve turşu.",
+image:"https://images.deliveryhero.io/image/fd-tr/products/60261150.jpg"
+},
+
+{
+id:13,
+category:"Tavuk Dönerler",
+name:"Tavuk Dürüm",
+price:200,
+description:"100 gr tavuk, özel sos, patates, turşu ve sarımsaklı mayonez.",
+image:"https://images.deliveryhero.io/image/fd-tr/Products/67448907.jpg"
+},
+
+{
+id:14,
+category:"Tavuk Dönerler",
+name:"Tavuk Boru Dürüm",
+price:220,
+description:"Patates, turşu, Antakya özel sosu ve sarımsaklı mayonez.",
+image:"https://images.deliveryhero.io/image/fd-tr/Products/67448936.jpg"
+},
+
+{
+id:15,
+category:"Tavuk Dönerler",
+name:"Mega Tavuk Döner Dürüm",
+price:240,
+description:"Patates, turşu, özel sos ve sarımsaklı mayonez.",
+image:"https://images.deliveryhero.io/image/fd-tr/Products/67449614.jpg"
+},
+
+{
+id:16,
+category:"Tavuk Dönerler",
+name:"Duble Tavuk Döner Dürüm",
+price:240,
+description:"Patates, turşu, özel sos ve sarımsaklı mayonez.",
+image:"https://images.deliveryhero.io/image/fd-tr/Products/67452025.jpg"
+},
+
+{
+id:17,
+category:"Tavuk Dönerler",
+name:"Tavuk Baba",
+price:270,
+description:"Patates, turşu, Antakya özel sos ve sarımsaklı mayonez.",
+image:"https://images.deliveryhero.io/image/fd-tr/Products/74147801.jpg"
+},
+
+
+{
+id:18,
+category:"Yan Ürünler",
+name:"Vejetaryen Dürüm",
+price:160,
+description:"Marul, turşu, patates kızartması, sos ve mayonez.",
+image:"https://images.deliveryhero.io/image/fd-tr/Products/74147801.jpg"
+},
+
+{
+id:19,
+category:"Yan Ürünler",
+name:"Patates Kızartması",
+price:140,
+description:"Çıtır patates kızartması.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60261159.jpg"
+},
+
+{
+id:20,
+category:"Yan Ürünler",
+name:"Mayonez",
+price:25,
+description:"Adet olarak servis edilir.",
+image:"https://images.deliveryhero.io/image/fd-tr/Products/77595283.jpg"
+},
+
+{
+id:21,
+category:"Yan Ürünler",
+name:"Ketçap",
+price:25,
+description:"Adet olarak servis edilir.",
+image:"https://images.deliveryhero.io/image/fd-tr/Products/77595287.jpg"
+},
+
+
+{
+id:22,
+category:"İçecekler",
+name:"Pepsi (33 cl.)",
+price:80,
+description:"Soğuk kutu içecek.",
+image:"https://images.deliveryhero.io/image/fd-tr/Products/60260721.jpg"
+},
+
+{
+id:23,
+category:"İçecekler",
+name:"Yedigün (33 cl.)",
+price:80,
+description:"Soğuk kutu içecek.",
+image:"https://images.deliveryhero.io/image/fd-tr/products/60260729.jpg"
+},
+
+{
+id:24,
+category:"İçecekler",
+name:"7UP (33 cl.)",
+price:80,
+description:"Soğuk kutu içecek.",
+image:"https://images.deliveryhero.io/image/fd-tr/products/60260735.jpg"
+},
+
+{
+id:25,
+category:"İçecekler",
+name:"Şalgam Suyu (30 cl.)",
+price:70,
+description:"Soğuk servis edilir.",
+image:"https://images.deliveryhero.io/image/fd-tr/products/60260709.jpg"
+},
+
+{
+id:26,
+category:"İçecekler",
+name:"Ayran (29 cl.)",
+price:50,
+description:"Soğuk ayran.",
+image:"https://yemeksepeti.dhmedia.io/image/fd-tr/products/60260776.jpg"
+},
+
+{
+id:27,
+category:"İçecekler",
+name:"Su (50 cl.)",
+price:30,
+description:"Pet şişe su.",
+image:"https://images.deliveryhero.io/image/fd-tr/products/60260739.jpg"
+},
+
+{
+id:28,
+category:"İçecekler",
+name:"Pepsi (1 L.)",
+price:130,
+description:"1 litre Pepsi.",
+image:"https://images.deliveryhero.io/image/fd-tr/products/60260724.jpg"
+},
+
+
+{
+id:29,
+category:"Poşet",
+name:"Poşet",
+price:1,
+description:"Plastik poşet.",
+image:"https://images.deliveryhero.io/image/fd-tr/Products/60261623.jpg"
+}
+
+];
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+let activeCategory = "Tümü";
+
+let cart =
+JSON.parse(
+    localStorage.getItem("antochya_cart")
+    || "{}"
+);
+
+
+/* =========================================================
+   PARA
+========================================================= */
+
+function money(value){
+
+return new Intl.NumberFormat(
+    "tr-TR"
+).format(value)
++ " TL";
+
+}
+
+
+/* =========================================================
+   KATEGORİLER
+========================================================= */
+
+const categoryList = [
+
+"Tümü",
+
+...new Set(
+    products.map(
+        product =>
+        product.category
+    )
+)
+
+];
+
+
+function renderCategories(){
+
+const element =
+document.getElementById(
+    "categories"
+);
+
+element.innerHTML =
+
+categoryList.map(
+
+category => `
+
+<button
+
+class="
+category-button
+${category === activeCategory ? "active" : ""}
+"
+
+onclick="
+setCategory(
+'${category}'
+)
+"
+
+>
+
+${category}
+
+</button>
+
+`
+
+).join("");
+
+}
+
+
+
+function setCategory(category){
+
+activeCategory =
+category;
+
+renderCategories();
+
+renderMenu();
+
+}
+
+
+/* =========================================================
+   MENÜ
+========================================================= */
+
+function renderMenu(){
+
+const search =
+document
+.getElementById(
+    "searchInput"
+)
+.value
+.toLocaleLowerCase(
+    "tr"
+);
+
+const filtered =
+
+products.filter(product => {
+
+const categoryMatch =
+
+activeCategory === "Tümü"
+
+||
+
+product.category ===
+activeCategory;
+
+
+const searchMatch =
+
+(
+product.name
++
+" "
++
+product.description
+)
+.toLocaleLowerCase(
+    "tr"
+)
+.includes(search);
+
+
+return
+
+categoryMatch
+&&
+searchMatch;
+
+});
+
+
+const groups =
+
+[
+...new Set(
+filtered.map(
+    product =>
+    product.category
+)
+)
+];
+
+
+const container =
+
+document.getElementById(
+    "menuContainer"
+);
+
+
+container.innerHTML =
+
+groups.map(category => {
+
+const categoryProducts =
+
+filtered.filter(
+product =>
+product.category ===
+category
+);
+
+
+return `
+
+<section
+class="menu-section"
+>
+
+<div
+class="section-title"
+>
+
+<h2>
+${category}
+</h2>
+
+<span>
+${categoryProducts.length}
+ürün
+</span>
+
+</div>
+
+
+<div
+class="products"
+>
+
+${
+
+categoryProducts
+
+.map(
+
+product =>
+productHTML(product)
+
+)
+
+.join("")
+
+}
+
+</div>
+
+</section>
+
+`;
+
+}).join("");
+
+
+updateProductControls();
+
+}
+
+
+
+/* =========================================================
+   ÜRÜN HTML
+========================================================= */
+
+function productHTML(product){
+
+return `
+
+<article
+class="product-card"
+>
+
+<div
+class="product-info"
+>
+
+<h3>
+${product.name}
+</h3>
+
+<div
+class="product-description"
+>
+${product.description}
+</div>
+
+<div
+class="product-price"
+>
+${money(product.price)}
+</div>
+
+</div>
+
+
+<div
+class="product-image-box"
+>
+
+<img
+
+class="product-image"
+
+src="
+${product.image}
+"
+
+alt="
+${product.name}
+"
+
+loading="lazy"
+
+onerror="
+this.src=
+'https://images.unsplash.com/photo-1561651823-34feb02250e4?auto=format&fit=crop&w=400&q=80'
+"
+
+>
+
+
+<div
+id="
+control-${product.id}
+"
+>
+
+</div>
+
+</div>
+
+</article>
+
+`;
+
+}
+
+
+/* =========================================================
+   ÜRÜN + / -
+========================================================= */
+
+function updateProductControls(){
+
+products.forEach(
+
+product => {
+
+const holder =
+
+document.getElementById(
+`control-${product.id}`
+);
+
+if(!holder)
+return;
+
+
+const qty =
+cart[product.id]
+|| 0;
+
+
+if(qty === 0){
+
+holder.innerHTML = `
+
+<button
+
+class="add-button"
+
+onclick="
+changeQuantity(
+${product.id},
+1
+)
+"
+
+>
+
++
+
+</button>
+
+`;
+
+}
+
+else{
+
+holder.innerHTML = `
+
+<div
+class="qty-control"
+>
+
+<button
+
+onclick="
+changeQuantity(
+${product.id},
+-1
+)
+"
+
+>
+
+−
+
+</button>
+
+<span>
+${qty}
+</span>
+
+<button
+
+onclick="
+changeQuantity(
+${product.id},
+1
+)
+"
+
+>
+
++
+
+</button>
+
+</div>
+
+`;
+
+}
+
+}
+
+);
+
+}
+
+
+
+function changeQuantity(
+
+productId,
+amount
+
+){
+
+cart[productId] =
+
+(cart[productId] || 0)
+
++
+
+amount;
+
+
+if(
+cart[productId]
+<= 0
+){
+
+delete cart[productId];
+
+}
+
+
+saveCart();
+
+updateProductControls();
+
+}
+
+
+/* =========================================================
+   SEPET
+========================================================= */
+
+function getCartItems(){
+
+return
+
+Object
+.entries(cart)
+
+.map(
+
+([id, quantity]) => {
+
+const product =
+
+products.find(
+
+item =>
+item.id ===
+Number(id)
+
+);
+
+return{
+
+...product,
+
+quantity
+
+};
+
+}
+
+);
+
+}
+
+
+
+function getTotal(){
+
+return
+
+getCartItems()
+
+.reduce(
+
+(total,item) =>
+
+total
++
+(
+item.price
+*
+item.quantity
+),
+
+0
+
+);
+
+}
+
+
+
+function saveCart(){
+
+localStorage.setItem(
+
+"antochya_cart",
+
+JSON.stringify(cart)
+
+);
+
+updateCartBar();
+
+}
+
+
+
+/* =========================================================
+   ALT SEPET BAR
+========================================================= */
+
+function updateCartBar(){
+
+const items =
+getCartItems();
+
+
+const count =
+
+items.reduce(
+
+(total,item) =>
+
+total + item.quantity,
+
+0
+
+);
+
+
+const cartBar =
+
+document.getElementById(
+    "cartBar"
+);
+
+
+if(count > 0){
+
+cartBar.classList.add(
+    "show"
+);
+
+}
+
+else{
+
+cartBar.classList.remove(
+    "show"
+);
+
+}
+
+
+document
+.getElementById(
+    "cartCount"
+)
+.innerText =
+
+count
++
+" ürün";
+
+
+document
+.getElementById(
+    "cartTotal"
+)
+.innerText =
+
+money(
+getTotal()
+);
+
+}
+
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function showSheet(html){
+
+document
+.getElementById(
+    "sheet"
+)
+.innerHTML =
+html;
+
+
+document
+.getElementById(
+    "overlay"
+)
+.classList.add(
+    "show"
+);
+
+
+document
+.getElementById(
+    "sheet"
+)
+.classList.add(
+    "show"
+);
+
+
+document.body.style.overflow =
+"hidden";
+
+}
+
+
+
+function closeSheet(){
+
+document
+.getElementById(
+    "overlay"
+)
+.classList.remove(
+    "show"
+);
+
+
+document
+.getElementById(
+    "sheet"
+)
+.classList.remove(
+    "show"
+);
+
+
+document.body.style.overflow =
+"";
+
+}
+
+
+
+/* =========================================================
+   SEPET EKRANI
+========================================================= */
+
+function openCart(){
+
+renderCart();
+
+}
+
+
+
+function renderCart(){
+
+const items =
+getCartItems();
+
+
+let itemHTML = "";
+
+
+items.forEach(item => {
+
+itemHTML += `
+
+<div
+class="cart-item"
+>
+
+<img
+class="cart-thumb"
+src="${item.image}"
+>
+
+
+<div
+class="cart-item-info"
+>
+
+<strong>
+${item.name}
+</strong>
+
+<div
+class="cart-item-price"
+>
+${money(
+item.price
+*
+item.quantity
+)}
+</div>
+
+
+<div
+class="cart-item-actions"
+>
+
+<button
+
+onclick="
+changeCartQuantity(
+${item.id},
+-1
+)
+"
+
+>
+
+−
+
+</button>
+
+<span>
+${item.quantity}
+</span>
+
+<button
+
+onclick="
+changeCartQuantity(
+${item.id},
+1
+)
+"
+
+>
+
++
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+showSheet(`
+
+<div
+class="sheet-header"
+>
+
+<h2>
+Sepetim
+</h2>
+
+<button
+class="close-button"
+onclick="closeSheet()"
+>
+×
+</button>
+
+</div>
+
+
+${
+
+itemHTML
+
+||
+
+"<p>Sepetiniz boş.</p>"
+
+}
+
+
+${
+
+items.length
+
+?
+
+`
+
+<div
+class="total-row"
+>
+
+<span>
+Toplam
+</span>
+
+<span>
+${money(
+getTotal()
+)}
+</span>
+
+</div>
+
+
+<button
+class="primary-button"
+onclick="checkout()"
+>
+
+Siparişe Devam Et
+
+</button>
+
+`
+
+:
+
+""
+
+}
+
+`);
+
+}
+
+
+
+function changeCartQuantity(
+
+id,
+amount
+
+){
+
+changeQuantity(
+id,
+amount
+);
+
+renderCart();
+
+}
+
+
+
+/* =========================================================
+   TESLİMAT EKRANI
+========================================================= */
+
+function checkout(){
+
+const customer =
+
+JSON.parse(
+
+localStorage.getItem(
+"antochya_customer"
+)
+
+||
+
+"null"
+
+);
+
+
+showSheet(`
+
+<div
+class="sheet-header"
+>
+
+<h2>
+Teslimat Bilgileri
+</h2>
+
+<button
+class="close-button"
+onclick="closeSheet()"
+>
+×
+</button>
+
+</div>
+
+
+
+<div
+class="form-group"
+>
+
+<label>
+AD SOYAD
+</label>
+
+<input
+
+id="customerName"
+
+value="
+${customer?.name || ""}
+"
+
+placeholder="
+Adınız Soyadınız
+"
+
+>
+
+</div>
+
+
+
+<div
+class="form-group"
+>
+
+<label>
+TELEFON
+</label>
+
+<input
+
+id="customerPhone"
+
+type="tel"
+
+inputmode="tel"
+
+value="
+${customer?.phone || ""}
+"
+
+placeholder="
+05xx xxx xx xx
+"
+
+>
+
+</div>
+
+
+
+<div
+class="form-group"
+>
+
+<label>
+MAHALLE
+</label>
+
+<input
+
+id="customerDistrict"
+
+value="
+${customer?.district || ""}
+"
+
+placeholder="
+Mahalle
+"
+
+>
+
+</div>
+
+
+
+<div
+class="form-group"
+>
+
+<label>
+AÇIK ADRES
+</label>
+
+<textarea
+
+id="customerAddress"
+
+placeholder="
+Cadde, sokak, bina, daire...
+"
+
+>${customer?.address || ""}</textarea>
+
+</div>
+
+
+
+<div
+class="form-group"
+>
+
+<label>
+SİPARİŞ / ADRES NOTU
+</label>
+
+<textarea
+
+id="customerNote"
+
+placeholder="
+Örn. zile basmayın, acısız olsun...
+"
+
+>${customer?.note || ""}</textarea>
+
+</div>
+
+
+
+<label
+class="remember-box"
+>
+
+<input
+id="rememberCustomer"
+type="checkbox"
+${customer ? "checked" : ""}
+>
+
+<span>
+
+Bilgilerimi sonraki siparişim için bu cihazda hatırla.
+
+</span>
+
+</label>
+
+
+
+<div
+class="form-group"
+>
+
+<label>
+ÖDEME YÖNTEMİ
+</label>
+
+
+<label
+class="payment-option"
+>
+
+<input
+type="radio"
+name="payment"
+value="Kapıda Nakit"
+checked
+>
+
+💵
+
+Kapıda Nakit
+
+</label>
+
+
+<label
+class="payment-option"
+>
+
+<input
+type="radio"
+name="payment"
+value="Kapıda Kart"
+>
+
+💳
+
+Kapıda Kredi / Banka Kartı
+
+</label>
+
+</div>
+
+
+
+<div
+class="total-row"
+>
+
+<span>
+Toplam
+</span>
+
+<span>
+${money(
+getTotal()
+)}
+</span>
+
+</div>
+
+
+
+<button
+class="primary-button"
+onclick="placeOrder()"
+>
+
+Siparişi Ver
+
+</button>
+
+`);
+
+}
+
+
+
+/* =========================================================
+   SİPARİŞ
+========================================================= */
+
+function placeOrder(){
+
+const name =
+
+document
+.getElementById(
+"customerName"
+)
+.value
+.trim();
+
+
+const phone =
+
+document
+.getElementById(
+"customerPhone"
+)
+.value
+.trim();
+
+
+const district =
+
+document
+.getElementById(
+"customerDistrict"
+)
+.value
+.trim();
+
+
+const address =
+
+document
+.getElementById(
+"customerAddress"
+)
+.value
+.trim();
+
+
+const note =
+
+document
+.getElementById(
+"customerNote"
+)
+.value
+.trim();
+
+
+
+if(
+!name
+||
+!phone
+||
+!address
+){
+
+alert(
+
+"Lütfen ad, telefon ve açık adres bilgilerini doldurun."
+
+);
+
+return;
+
+}
+
+
+
+const customerData = {
+
+name,
+phone,
+district,
+address,
+note
+
+};
+
+
+
+const remember =
+
+document
+.getElementById(
+"rememberCustomer"
+)
+.checked;
+
+
+
+if(remember){
+
+localStorage.setItem(
+
+"antochya_customer",
+
+JSON.stringify(
+customerData
+)
+
+);
+
+}
+
+else{
+
+localStorage.removeItem(
+"antochya_customer"
+);
+
+}
+
+
+
+const orderNumber =
+
+Math.floor(
+
+1000
++
+Math.random()
+*
+9000
+
+);
+
+
+cart = {};
+
+saveCart();
+
+updateProductControls();
+
+
+
+showSheet(`
+
+<div
+class="success"
+>
+
+<div
+class="success-icon"
+>
+✓
+</div>
+
+
+<h2>
+Siparişiniz Alındı
+</h2>
+
+
+<p>
+
+Sipariş numaranız
+
+<strong>
+#${orderNumber}
+</strong>
+
+<br>
+
+Siparişiniz restorana iletilmek üzere oluşturuldu.
+
+</p>
+
+
+<button
+class="primary-button"
+onclick="closeSheet()"
+>
+
+Menüye Dön
+
+</button>
+
+</div>
+
+`);
+
+}
+
+
+
+/* =========================================================
+   ARAMA
+========================================================= */
+
+document
+.getElementById(
+"searchInput"
+)
+.addEventListener(
+
+"input",
+
+renderMenu
+
+);
+
+
+
+/* =========================================================
+   SLIDER
+========================================================= */
+
+let currentSlide =
+0;
+
+
+const slides =
+
+document
+.querySelectorAll(
+".slide"
+);
+
+
+const dots =
+
+document
+.querySelectorAll(
+".dot"
+);
+
+
+
+function goSlide(index){
+
+slides.forEach(
+slide =>
+slide.classList.remove(
+"active"
+)
+);
+
+
+dots.forEach(
+dot =>
+dot.classList.remove(
+"active"
+)
+);
+
+
+currentSlide =
+index;
+
+
+slides[
+currentSlide
+]
+.classList.add(
+"active"
+);
+
+
+dots[
+currentSlide
+]
+.classList.add(
+"active"
+);
+
+}
+
+
+
+setInterval(
+
+()=>{
+
+currentSlide++;
+
+if(
+currentSlide
+>=
+slides.length
+){
+
+currentSlide =
+0;
+
+}
+
+goSlide(
+currentSlide
+);
+
+},
+
+4500
+
+);
+
+
+
+/* =========================================================
+   BAŞLAT
+========================================================= */
+
+renderCategories();
+
+renderMenu();
+
+updateCartBar();
+
+</script>
+
+
+</body>
+</html>
